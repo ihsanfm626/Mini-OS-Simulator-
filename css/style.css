@@ -1,0 +1,23 @@
+:root {
+  --color-bg: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-sidebar: #172B3A;
+  --color-text: #172B3A;
+  --color-text-muted: #64748B;
+  --color-border: #E2E8F0;
+  --color-primary: #167D8D;
+  --color-primary-hover: #116775;
+  --color-primary-soft: #E5F4F5;
+  --color-success: #247A55;
+  --color-success-soft: #E8F5EE;
+  --color-warning: #B96A20;
+  --color-warning-soft: #FFF3E5;
+  --color-danger: #B54747;
+  --color-danger-soft: #FCECEC;
+
+  --font-body: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --shadow-panel: 0 2px 8px rgb(23 43 58 / 4%);
+}
