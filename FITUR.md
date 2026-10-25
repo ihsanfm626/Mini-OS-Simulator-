@@ -4,7 +4,7 @@ Dokumen ini menjadi panduan fitur dan urutan pengerjaan proyek **Mini OS Simulat
 
 ## 1. Gambaran Umum
 
-Mini OS Simulator adalah aplikasi edukasi untuk menyimulasikan dan membandingkan algoritma pada dua materi Sistem Operasi:
+Mini OS Simulator adalah aplikasi edukasi yang menyediakan halaman materi bergambar, simulasi interaktif, dan perbandingan algoritma untuk dua topik Sistem Operasi:
 
 1. **CPU Scheduling**: FCFS, SJF Non-Preemptive, dan Round Robin.
 2. **Page Replacement**: FIFO, LRU, dan Optimal.
@@ -31,8 +31,8 @@ Pengguna dapat memasukkan data sendiri, menjalankan simulasi, melihat urutan pro
 
 | ID | Fitur | Prioritas | Keterangan |
 |---|---|---|---|
-| F01 | Dashboard | Wajib | Halaman utama dan pengantar aplikasi |
-| F02 | Navigasi modul | Wajib | Berpindah ke CPU Scheduling, Page Replacement, dan Perbandingan |
+| F01 | Halaman Materi | Wajib | Halaman belajar dengan pilihan materi CPU Scheduling dan Page Replacement, dilengkapi ilustrasi |
+| F02 | Navigasi sidebar | Wajib | Navigasi ke Materi, CPU Scheduling, Page Replacement, dan Perbandingan |
 | F03 | Input proses | Wajib | Menambah, mengubah, dan menghapus data proses |
 | F04 | Pemilihan algoritma CPU | Wajib | Memilih FCFS, SJF, atau Round Robin |
 | F05 | Gantt Chart | Wajib | Menampilkan urutan dan rentang waktu eksekusi CPU |
@@ -51,48 +51,59 @@ Prioritas dapat disesuaikan dengan waktu pengerjaan. Fitur inti sebaiknya disele
 
 ## 3. Detail Fitur dan Langkah Penggunaan
 
-## F01 — Dashboard
+## F01 — Halaman Materi
 
-**Tujuan:** Menjadi halaman awal yang menjelaskan aplikasi dan menyediakan akses ke modul utama.
+**Tujuan:** Menjadi pusat belajar sebelum pengguna mencoba simulasi. Halaman ini menyajikan konsep Sistem Operasi dengan penjelasan singkat dan banyak ilustrasi yang membantu memahami alur, bukan sekadar teks panjang.
 
-### Elemen yang ditampilkan
-- Nama aplikasi: Mini OS Simulator.
-- Deskripsi singkat tujuan aplikasi.
-- Ringkasan dua modul: CPU Scheduling dan Page Replacement.
-- Tombol atau kartu untuk membuka setiap modul.
-- Akses ke halaman perbandingan algoritma.
+### Pilihan materi
+1. **Materi CPU Scheduling** — pengertian proses dan penjadwalan CPU, tujuan scheduling, cara kerja FCFS, SJF Non-Preemptive, dan Round Robin, contoh antrean proses, contoh Gantt Chart, serta penjelasan metrik CT, TAT, WT, dan RT.
+2. **Materi Page Replacement** — pengertian page, frame, reference string, page hit, page fault, serta ilustrasi langkah FIFO, LRU, dan Optimal.
 
-### Langkah penggunaan
-1. Pengguna membuka `index.html` melalui browser.
-2. Aplikasi menampilkan judul dan penjelasan singkat.
-3. Pengguna memilih modul CPU Scheduling, Page Replacement, atau Perbandingan.
-4. Aplikasi menampilkan halaman atau bagian yang dipilih.
+### Bentuk konten dan ilustrasi
+- Diagram alur sederhana untuk menjelaskan proses kerja algoritma.
+- Ilustrasi antrean proses dan CPU untuk materi scheduling.
+- Contoh Gantt Chart dengan penanda waktu.
+- Ilustrasi frame memori yang berubah dari satu referensi halaman ke referensi berikutnya.
+- Tabel kecil berisi contoh input dan hasil, disertai keterangan.
+- Ringkasan konsep penting dan tombol menuju modul simulasi terkait.
 
-### Kriteria selesai
-- Dashboard tampil dengan benar.
-- Setiap tombol navigasi membuka bagian yang sesuai.
-- Tampilan tetap terbaca pada ukuran layar desktop dan layar yang lebih kecil.
-
-## F02 — Navigasi Modul
-
-**Tujuan:** Memudahkan pengguna berpindah antarbagian aplikasi.
-
-### Modul
-- Dashboard.
-- CPU Scheduling.
-- Page Replacement.
-- Perbandingan Algoritma.
+Ilustrasi harus menjelaskan konsep yang sedang dibahas. Hindari gambar dekoratif yang tidak membantu pembelajaran.
 
 ### Langkah penggunaan
-1. Pengguna memilih menu modul.
-2. Aplikasi menampilkan modul yang dipilih.
-3. Pengguna dapat kembali ke dashboard atau berpindah ke modul lain.
-4. Navigasi tidak membuat halaman menjadi kosong atau memuat ulang secara tidak perlu.
+1. Pengguna membuka menu **Materi** pada sidebar.
+2. Aplikasi menampilkan pengantar singkat dan dua pilihan materi.
+3. Pengguna memilih **CPU Scheduling** atau **Page Replacement**.
+4. Aplikasi menampilkan materi dalam bagian-bagian terstruktur dengan ilustrasi, contoh, dan ringkasan.
+5. Pengguna dapat membuka halaman simulasi yang sesuai melalui tombol seperti **Coba Simulasi CPU** atau **Coba Simulasi Page Replacement**.
 
 ### Kriteria selesai
-- Semua menu berfungsi.
-- Menu aktif dapat dibedakan secara visual.
-- Navigasi konsisten pada semua bagian.
+- Halaman Materi memiliki dua pilihan materi yang jelas.
+- Setiap materi memuat penjelasan konsep dan ilustrasi yang relevan.
+- Ilustrasi dan contoh sesuai dengan konsep yang diterangkan.
+- Terdapat jalur yang jelas dari materi menuju simulasi terkait.
+- Tampilan nyaman dibaca di desktop dan layar kecil.
+
+## F02 — Navigasi Sidebar
+
+**Tujuan:** Memudahkan pengguna berpindah ke empat bagian utama aplikasi.
+
+### Menu sidebar
+1. **Materi** — pusat belajar dan pilihan dua topik.
+2. **CPU Scheduling** — halaman simulasi FCFS, SJF, dan Round Robin.
+3. **Page Replacement** — halaman simulasi FIFO, LRU, dan Optimal.
+4. **Perbandingan** — perbandingan metrik seluruh algoritma dalam kedua topik.
+
+### Langkah penggunaan
+1. Pengguna memilih menu pada sidebar.
+2. Aplikasi menampilkan halaman yang sesuai tanpa memuat ulang seluruh aplikasi secara tidak perlu.
+3. Menu aktif diberi penanda visual.
+4. Dari halaman Materi, pengguna juga dapat masuk ke simulasi melalui tombol terkait.
+
+### Kriteria selesai
+- Keempat menu berfungsi dan konsisten.
+- Menu aktif mudah dikenali.
+- Navigasi dapat digunakan pada desktop dan layar kecil.
+- Tidak ada menu Dashboard terpisah; halaman Materi menjadi titik awal aplikasi.
 
 ## F03 — Input Data Proses
 
@@ -320,33 +331,43 @@ Jumlah Page Hit ditambah Page Fault harus sama dengan total halaman dalam refere
 
 **Tujuan:** Memudahkan pengguna membandingkan hasil beberapa algoritma secara adil.
 
-### Perbandingan CPU
-- FCFS.
-- SJF Non-Preemptive.
-- Round Robin.
+### Perbandingan CPU Scheduling
+Semua algoritma menggunakan kumpulan proses yang sama: **FCFS, SJF Non-Preemptive, dan Round Robin**. Perbandingan wajib menampilkan:
+- **Rata-rata Waiting Time (Avg. WT)**.
+- **Rata-rata Turnaround Time (Avg. TAT)**.
 
-Metrik yang dibandingkan: rata-rata Waiting Time, Turnaround Time, dan Response Time, serta Gantt Chart bila sesuai.
+Untuk membantu penjelasan tambahan, aplikasi boleh menampilkan rata-rata Response Time dan Gantt Chart, tetapi dua metrik wajib di atas harus selalu ada.
 
 ### Perbandingan Page Replacement
-- FIFO.
-- LRU.
-- Optimal.
+Semua algoritma menggunakan reference string dan jumlah frame yang sama: **FIFO, LRU, dan Optimal**. Perbandingan wajib menampilkan:
+- **Page Hit** (jumlah).
+- **Page Fault** (jumlah).
 
-Metrik yang dibandingkan: Page Fault, Page Hit, Hit Ratio, dan Fault Ratio.
+Hit Ratio dan Fault Ratio boleh ditampilkan sebagai metrik tambahan, tetapi tidak menggantikan Page Hit dan Page Fault.
+
+### Bentuk tampilan perbandingan lengkap
+- Sediakan pilihan bagian **CPU Scheduling** dan **Page Replacement** di halaman Perbandingan.
+- Masing-masing bagian menampilkan seluruh algoritma untuk topik tersebut, bukan hanya algoritma yang sedang dipilih di halaman simulasi.
+- Tampilkan tabel komparasi dengan kolom metrik wajib.
+- Gunakan grafik batang terpisah bila membantu, dengan label dan satuan yang jelas.
+- Berikan penanda hasil terbaik hanya jika berdasarkan metrik yang jelas: nilai rata-rata WT/TAT lebih rendah untuk metrik tersebut; Page Fault lebih sedikit atau Page Hit lebih banyak untuk data referensi yang sama. Jangan menyatakan satu algoritma selalu terbaik untuk semua input.
 
 ### Langkah penggunaan
-1. Pengguna memasukkan data proses atau reference string satu kali.
-2. Pengguna membuka bagian Perbandingan.
-3. Aplikasi menjalankan semua algoritma dalam modul tersebut menggunakan input yang sama.
-4. Aplikasi menampilkan tabel perbandingan.
-5. Aplikasi dapat menampilkan grafik sederhana jika waktu pengerjaan mencukupi.
-6. Pengguna mengamati perbedaan hasil tanpa mengubah input dasar.
+1. Pengguna membuka menu **Perbandingan**.
+2. Pengguna memilih bagian CPU Scheduling atau Page Replacement.
+3. Aplikasi menggunakan input yang sama untuk seluruh algoritma dalam bagian tersebut. Jika input belum tersedia, aplikasi meminta pengguna mengisi input atau mengarahkan pengguna ke modul terkait.
+4. Aplikasi menghitung hasil semua algoritma dan menampilkan tabel lengkap.
+5. Bagian CPU menampilkan rata-rata WT dan rata-rata TAT untuk FCFS, SJF, dan Round Robin.
+6. Bagian Page Replacement menampilkan Page Hit dan Page Fault untuk FIFO, LRU, dan Optimal.
+7. Pengguna dapat mengubah input dan menjalankan ulang perbandingan.
 
 ### Kriteria selesai
-- Semua algoritma menerima input yang setara.
-- Metrik ditampilkan dalam tabel dengan satuan/format yang jelas.
+- Semua algoritma dalam satu perbandingan menerima input yang setara.
+- CPU Scheduling selalu menampilkan Avg. WT dan Avg. TAT untuk FCFS, SJF, dan Round Robin.
+- Page Replacement selalu menampilkan Page Hit dan Page Fault untuk FIFO, LRU, dan Optimal.
+- Metrik ditampilkan dalam tabel dengan format yang jelas.
 - Perbandingan diperbarui ketika input berubah.
-- Kesimpulan tidak ditentukan hanya dari satu metrik; pengguna dapat menilai metrik yang relevan.
+- Penanda hasil terbaik didasarkan pada metrik tertentu, bukan klaim universal.
 
 ## F12 — Penjelasan Setiap Langkah
 
@@ -415,18 +436,18 @@ Pengerjaan dilakukan bertahap agar struktur proyek dan konsep algoritma dapat di
 2. Buat `index.html` dan `README.md`.
 3. Buat folder `css/`, `js/`, dan `assets/`.
 4. Di dalam `assets/`, buat `images/`, `icons/`, dan `fonts/`.
-5. Buat file CSS: `style.css`, `dashboard.css`, dan `simulator.css`.
+5. Buat file CSS: `style.css`, `materi.css`, dan `simulator.css`.
 6. Hubungkan CSS ke `index.html`.
-7. Buat kerangka dashboard dan menu modul.
+7. Buat kerangka halaman Materi dan menu sidebar.
 8. Uji halaman melalui browser.
 
 **Selesai jika:** halaman tampil, CSS terhubung, dan menu utama dapat digunakan.
 
-### Tahap 2 — Dashboard dan navigasi
+### Tahap 2 — Halaman Materi dan navigasi
 **Target:** F01 dan F02.
 
 1. Susun header, deskripsi, dan kartu modul.
-2. Buat bagian CPU Scheduling, Page Replacement, dan Perbandingan.
+2. Buat bagian Materi, CPU Scheduling, Page Replacement, dan Perbandingan.
 3. Hubungkan tombol menu dengan bagian yang sesuai menggunakan JavaScript.
 4. Beri penanda pada menu aktif.
 5. Uji perpindahan menu.
@@ -496,12 +517,13 @@ Pengerjaan dilakukan bertahap agar struktur proyek dan konsep algoritma dapat di
 ### Tahap 9 — Perbandingan
 **Target:** F11.
 
-1. Jalankan semua algoritma CPU dengan input proses yang sama.
-2. Tampilkan tabel perbandingan metrik CPU.
-3. Jalankan semua algoritma Page Replacement dengan input yang sama.
-4. Tampilkan tabel perbandingan metrik memori.
-5. Tambahkan grafik sederhana jika fitur inti sudah stabil.
-6. Pastikan perubahan input memperbarui hasil perbandingan.
+1. Buat dua bagian di halaman Perbandingan: CPU Scheduling dan Page Replacement.
+2. Jalankan FCFS, SJF, dan Round Robin dengan input proses yang sama.
+3. Tampilkan setidaknya rata-rata Waiting Time dan rata-rata Turnaround Time setiap algoritma CPU.
+4. Jalankan FIFO, LRU, dan Optimal dengan reference string serta jumlah frame yang sama.
+5. Tampilkan Page Hit dan Page Fault setiap algoritma memori.
+6. Tambahkan grafik terpisah jika fitur inti sudah stabil.
+7. Pastikan perubahan input memperbarui seluruh hasil perbandingan.
 
 ### Tahap 10 — Pengujian, dokumentasi, dan demo
 **Target:** memastikan produk siap diserahkan.
@@ -532,7 +554,7 @@ mini-os-simulator/
 │   └── fonts/
 ├── css/
 │   ├── style.css
-│   ├── dashboard.css
+│   ├── materi.css
 │   └── simulator.css
 └── js/
     ├── app.js
@@ -557,7 +579,7 @@ mini-os-simulator/
 
 | Minggu | Fokus | Target |
 |---|---|---|
-| Minggu 1 | Struktur folder, HTML, CSS, dashboard, navigasi, form input | Kerangka aplikasi dapat digunakan |
+| Minggu 1 | Struktur folder, HTML, CSS, halaman Materi, navigasi, dan kerangka form | Kerangka aplikasi dapat digunakan |
 | Minggu 2 | FCFS, SJF, Round Robin, Gantt Chart, metrik CPU | Modul CPU Scheduling berfungsi |
 | Minggu 3 | FIFO, LRU, Optimal, visualisasi frame, metrik memori | Modul Page Replacement berfungsi |
 | Minggu 4 | Kontrol langkah, penjelasan, perbandingan, pengujian, dokumentasi, demo | Produk siap dipresentasikan |
@@ -574,7 +596,7 @@ Gunakan checklist ini untuk mencatat pekerjaan yang sudah selesai.
 - [ ] Folder dan file awal dibuat.
 - [ ] `index.html` dapat dibuka.
 - [ ] CSS terhubung dengan benar.
-- [ ] Dashboard selesai.
+- [ ] Halaman Materi selesai.
 - [ ] Navigasi antar modul berfungsi.
 
 ### CPU Scheduling

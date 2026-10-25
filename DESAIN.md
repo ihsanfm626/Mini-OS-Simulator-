@@ -1,70 +1,102 @@
 # DESAIN.md — Mini OS Simulator
 
-Dokumen ini menjadi acuan UI/UX Mini OS Simulator berdasarkan `FITUR.md`. Aplikasi dibuat dengan HTML, CSS, dan Vanilla JavaScript. Arah desainnya adalah **Practical Learning Lab**: terasa seperti laboratorium praktikum digital yang rapi, tenang, mudah dipahami, dan berfokus pada visualisasi algoritma. Bukan dashboard penuh dekorasi.
+Dokumen ini menjadi acuan UI/UX Mini OS Simulator berdasarkan `FITUR.md`. Aplikasi dibuat dengan HTML, CSS, dan Vanilla JavaScript. Arah visual diperbarui menjadi **retro seimbang terinspirasi Poolsuite**: nuansa web editorial tropis, tipografi display bergaya vintage, warna krem dengan aksen coral dan teal, serta panel yang terasa playful. Referensi dipakai sebagai inspirasi suasana, bukan untuk menyalin layout atau asetnya. Keterbacaan materi dan ketepatan visualisasi algoritma tetap menjadi prioritas.
 
 ## 1. Arah visual
 
-Karakter:
-- Terstruktur dan mudah dipindai.
-- Teknis, tetapi ramah untuk mahasiswa yang sedang belajar.
-- Warna digunakan untuk menandai status dan fokus, bukan sebagai hiasan.
-- Interaksi konsisten dan setiap tombol memiliki fungsi yang jelas.
-- Visualisasi algoritma menjadi pusat perhatian.
+Karakter desain:
+- **Retro-modern, bukan replika.** Gunakan suasana editorial dan santai ala Poolsuite: warna hangat, aksen tropis, tipografi display, dan komposisi berani yang tetap rapi.
+- **Tetap terasa seperti alat belajar.** Konten teknis, tabel, label proses, angka waktu, dan status algoritma harus lebih mudah dibaca daripada dekorasi.
+- **Krem sebagai kanvas utama.** Gunakan warna gelap untuk teks dan struktur, sementara coral, teal, serta kuning dipakai sebagai aksen terpilih.
+- **Bentuk grafis sederhana.** Garis tebal, lingkaran, pola garis/grid tipis, label kapsul, dan blok warna dapat memberi karakter tanpa memerlukan gambar stok.
+- **Interaksi terasa langsung.** Hover, pilihan menu, dan langkah aktif mendapat respons cepat dan konsisten.
+- **Gunakan ilustrasi yang menjelaskan konsep OS.** Contohnya antrean proses, timeline Gantt, dan frame memori. Hindari statistik dekoratif dan ilustrasi yang tidak menambah pemahaman.
 
-Hindari gradien mencolok, glassmorphism, glow, bayangan tebal, animasi berlebihan, emoji sebagai ikon, terlalu banyak kartu bulat, statistik dekoratif, dan teks pemasaran berlebihan. Tampilan yang matang berasal dari hierarki informasi dan konsistensi, bukan dari banyak efek.
+Hindari meniru logo, identitas merek, atau aset Poolsuite secara langsung. Hindari pula glassmorphism, glow berlebihan, gradien di setiap panel, bayangan tebal, animasi latar, serta penggunaan banyak warna aksen sekaligus. Gunakan tekstur atau pola retro hanya pada area yang tidak mengganggu konten.
 
 ## 2. Palet warna
 
-Gunakan latar terang, biru tinta sebagai warna struktural, teal sebagai aksen utama, dan hijau/oranye untuk status simulasi.
-
 | Token CSS | Hex | Fungsi |
 |---|---|---|
-| `--color-bg` | `#F5F7FA` | Latar utama |
-| `--color-surface` | `#FFFFFF` | Panel dan tabel |
-| `--color-sidebar` | `#172B3A` | Sidebar |
-| `--color-sidebar-hover` | `#223D50` | Hover menu |
-| `--color-text` | `#172B3A` | Teks utama |
-| `--color-text-muted` | `#64748B` | Teks sekunder |
-| `--color-border` | `#E2E8F0` | Border dan garis tabel |
-| `--color-primary` | `#167D8D` | Tombol utama, tautan aktif |
-| `--color-primary-hover` | `#116775` | Hover tombol utama |
-| `--color-primary-soft` | `#E5F4F5` | Pilihan aktif berlatar lembut |
+| `--color-bg` | `#F7F0E2` | Latar utama krem hangat |
+| `--color-surface` | `#FFFDF7` | Panel utama dan tabel |
+| `--color-surface-alt` | `#EFE3CF` | Panel sekunder dan blok materi |
+| `--color-sidebar` | `#172D3A` | Sidebar biru gelap |
+| `--color-sidebar-hover` | `#254553` | Hover menu |
+| `--color-text` | `#172D3A` | Teks utama |
+| `--color-text-muted` | `#64716F` | Teks sekunder |
+| `--color-border` | `#D9CEBA` | Border dan garis tabel |
+| `--color-primary` | `#087E83` | Tombol utama, tautan aktif |
+| `--color-primary-hover` | `#06666B` | Hover tombol utama |
+| `--color-primary-soft` | `#D9EFEB` | Pilihan aktif berlatar lembut |
+| `--color-coral` | `#F07861` | Aksen visual, label, ilustrasi |
+| `--color-yellow` | `#F2C75C` | Aksen kecil dan sorotan materi |
 | `--color-success` | `#247A55` | Page Hit dan status berhasil |
-| `--color-success-soft` | `#E8F5EE` | Latar status berhasil |
-| `--color-warning` | `#B96A20` | Page Fault dan peringatan |
-| `--color-warning-soft` | `#FFF3E5` | Latar status peringatan |
+| `--color-success-soft` | `#E2F1E5` | Latar status berhasil |
+| `--color-warning` | `#A85B20` | Page Fault dan peringatan |
+| `--color-warning-soft` | `#FBE9D2` | Latar status peringatan |
 | `--color-danger` | `#B54747` | Error validasi/tindakan berisiko |
-| `--color-danger-soft` | `#FCECEC` | Latar pesan error |
+| `--color-danger-soft` | `#F8E2DD` | Latar pesan error |
 | `--color-info` | `#4169A1` | Informasi netral |
 
 Aturan:
-1. Latar halaman memakai `--color-bg`, panel memakai putih.
-2. Sidebar berwarna biru tinta; menu aktif memakai latar lebih terang dan penanda teal di sisi kiri.
-3. Tombol utama memakai teal; tombol sekunder putih dengan border.
-4. Page Hit memakai hijau dan Page Fault memakai oranye. Selalu tampilkan teks “Hit” atau “Fault”, jangan hanya mengandalkan warna.
-5. Merah khusus untuk error, bukan Page Fault.
-6. Warna setiap proses pada Gantt Chart harus konsisten antar-render dan disertai label Process ID.
-7. Jangan mewarnai semua panel dengan warna aksen.
+1. Gunakan krem sebagai latar global dan putih-krem untuk permukaan konten. Jangan membuat semua area menjadi panel.
+2. Sidebar tetap gelap agar navigasi mudah dibedakan dari konten; menu aktif diberi aksen teal dan penanda coral kecil.
+3. Coral dan kuning adalah aksen, bukan warna untuk seluruh teks atau tabel. Usahakan hanya satu aksen dekoratif dominan dalam satu area.
+4. Tombol utama memakai teal. Tombol sekunder memakai latar krem/putih dengan border.
+5. Page Hit memakai hijau dan Page Fault memakai oranye; status harus tetap ditulis sebagai teks, bukan dibedakan dari warna saja.
+6. Merah khusus untuk error, bukan Page Fault.
+7. Warna setiap proses pada Gantt Chart harus konsisten antar-render dan disertai label Process ID. Pilih palet yang tetap kontras di atas latar krem.
+8. Pola garis, bentuk matahari/lingkaran, atau garis tebal boleh digunakan di hero Materi; jangan meletakkannya di belakang tabel padat.
 
 ## 3. Tipografi
 
-Gunakan font sistem agar aplikasi ringan dan tidak bergantung pada layanan eksternal.
+Font display yang ditambahkan ke proyek adalah **VCR OSD Mono** (`VCR_OSD_MONO_1.001.ttf`). Gunakan sebagai font display untuk judul besar, nomor bagian, dan label pendek bergaya retro. Karena bentuk monospaced display dapat melelahkan untuk teks panjang, jangan gunakan untuk paragraf materi, form, tabel padat, atau penjelasan langkah. Isi utama menggunakan sans-serif yang mudah dibaca.
+
+Contoh pemuatan font lokal (sesuaikan lokasi file dengan struktur proyek; rancangan folder menggunakan `assets/fonts/`):
 
 ```css
-font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: "VCR OSD Mono";
+  src: url("../assets/fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "VCR OSD Mono", "Courier New", monospace;
+  --font-body: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+.hero-title,
+.section-number,
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+}
 ```
 
-| Elemen | Ukuran | Bobot |
-|---|---:|---|
-| Judul halaman | 28–32 px | 650–700 |
-| Judul bagian | 18–20 px | 600–650 |
-| Judul panel | 15–17 px | 600 |
-| Isi | 14–16 px | 400 |
-| Label form/tabel | 13–14 px | 500–600 |
-| Keterangan | 12–13 px | 400 |
-| Angka metrik utama | 24–30 px | 650–700 |
+Path `../assets/fonts/` di atas berlaku jika CSS berada di folder `css/` dan file font disimpan di `assets/fonts/`. Bila file font saat ini berada di lokasi lain, sesuaikan path `src` tanpa mengubah nama font.
 
-Gunakan kapitalisasi kalimat biasa. Batasi bold untuk judul, label penting, dan angka kunci. Pastikan kontras teks cukup tinggi.
+| Elemen | Ukuran | Penggunaan |
+|---|---:|---|
+| Judul hero Materi | 32–44 px | VCR OSD Mono, gunakan seperlunya |
+| Judul halaman simulator | 26–32 px | VCR OSD Mono atau sans-serif tebal jika judul panjang |
+| Judul bagian | 18–21 px | Sans-serif semibold |
+| Judul panel | 15–17 px | Sans-serif semibold |
+| Isi materi | 15–17 px | Sans-serif reguler, line-height 1.6–1.75 |
+| Label form/tabel | 13–14 px | Sans-serif medium |
+| Keterangan | 12–13 px | Sans-serif reguler |
+| Angka metrik utama | 24–30 px | Sans-serif semibold atau monospace yang jelas |
+
+Gunakan kapitalisasi kalimat biasa. Batasi font display untuk judul dan aksen; jangan memakainya pada semua teks hanya demi konsistensi retro. Pastikan kontras teks cukup tinggi.
 
 ## 4. Tata letak
 
@@ -79,14 +111,14 @@ Gunakan kapitalisasi kalimat biasa. Batasi bold untuk judul, label penting, dan 
 
 ```text
 ┌──────────────────┬───────────────────────────────────────────────┐
-│ MINI OS SIMULATOR│ Breadcrumb / nama halaman                     │
+│ MINI OS          │ Breadcrumb / nama halaman                     │
 │                  ├───────────────────────────────────────────────┤
-│ Ikhtisar         │ Judul halaman                                 │
+│ Materi           │ Judul halaman                                 │
 │ CPU Scheduling   │ Deskripsi singkat                             │
 │ Page Replacement │                                               │
 │ Perbandingan     │ Konten utama                                  │
 │                  │                                               │
-│ Tentang          │                                               │
+│                  │                                               │
 └──────────────────┴───────────────────────────────────────────────┘
 ```
 
@@ -102,23 +134,24 @@ Tidak perlu foto profil atau menu akun karena aplikasi tidak memiliki login. Are
 ## 5. Komponen bersama
 
 ### Sidebar
-Menu: Ikhtisar, CPU Scheduling, Page Replacement, Perbandingan. Item menu setinggi 42–46 px, ikon garis sederhana 18–20 px, dan penanda aktif yang jelas. Hindari banyak sub-menu.
+Menu: Materi, CPU Scheduling, Page Replacement, Perbandingan. Materi menjadi halaman awal aplikasi dan berisi pilihan topik belajar. Item menu setinggi 42–46 px, ikon garis sederhana 18–20 px, dan penanda aktif yang jelas. Hindari banyak sub-menu.
 
 ### Header halaman
 Setiap halaman menampilkan nama modul, judul, dan deskripsi satu kalimat. Hindari header tinggi yang membuat konten utama harus digulir terlalu jauh.
 
 ### Panel
-- Putih dengan border `1px solid var(--color-border)`.
-- Radius 10–12 px.
-- Bayangan tidak wajib; jika digunakan, sangat lembut.
+- Krem terang dengan border `1px solid var(--color-border)`.
+- Radius sekitar 8–14 px; hindari semua komponen berbentuk kapsul.
+- Bayangan boleh berupa offset tipis, misalnya `0 3px 0 rgb(23 45 58 / 8%)`, agar terasa grafis dan retro.
+- Panel materi boleh memakai latar `--color-surface-alt` atau aksen coral/kuning pada bagian kecil.
 - Hindari panel bertumpuk tanpa alasan.
 
 ### Tombol
 
 | Jenis | Tampilan | Contoh |
 |---|---|---|
-| Primary | Teal solid, teks putih | Jalankan simulasi, Tambah proses |
-| Secondary | Putih, border abu-abu | Reset, Kembali |
+| Primary | Teal solid, teks putih, border tegas | Jalankan simulasi, Tambah proses |
+| Secondary | Krem terang, border warna utama | Reset, Kembali |
 | Tertiary | Tanpa latar, teks warna utama | Edit, Lihat detail |
 
 Tinggi tombol sekitar 40 px. Gunakan kata kerja yang jelas. Tombol nonaktif harus terlihat nonaktif. Tombol hapus tidak perlu merah mencolok sebelum diarahkan atau dikonfirmasi.
@@ -156,35 +189,36 @@ Gunakan satu gaya ikon garis secara konsisten. Jika tidak memakai pustaka ikon, 
 
 ## 6. Rancangan halaman
 
-## Halaman 1 — Ikhtisar (Dashboard)
+## Halaman 1 — Materi
 
-**Tujuan:** memperkenalkan aplikasi dan membantu pengguna memilih modul.
+**Tujuan:** menjadi pusat belajar sebelum pengguna mencoba simulasi. Halaman ini memiliki banyak ilustrasi konseptual yang membantu menjelaskan mekanisme OS, tetapi setiap ilustrasi harus relevan dan memiliki fungsi edukatif.
 
 Urutan konten:
-1. Judul: **“Belajar cara kerja algoritma OS.”**
-2. Deskripsi: “Simulasikan penjadwalan CPU dan penggantian halaman memori, langkah demi langkah.”
-3. Dua panel modul: CPU Scheduling dan Page Replacement.
-4. Daftar ringkas algoritma yang tersedia.
-5. Tombol “Buka modul” pada masing-masing panel.
+1. Judul: **“Pahami konsepnya. Lalu coba simulasinya.”**
+2. Deskripsi singkat bahwa halaman ini menyediakan materi visual CPU Scheduling dan Page Replacement.
+3. Dua pilihan materi: **CPU Scheduling** dan **Page Replacement**.
+4. Di dalam setiap materi, gunakan bagian-bagian pendek dengan judul, teks ringkas, ilustrasi, contoh, dan ringkasan.
+5. Sediakan tombol **Coba Simulasi CPU** dan **Coba Simulasi Page Replacement** pada materi terkait.
 
 Wireframe:
 
 ```text
 ┌───────────────────────────────────────────────────────────────────┐
-│ Ikhtisar                                                           │
-│ Belajar cara kerja algoritma OS.                                   │
-│ Simulasikan mekanisme OS, satu langkah pada satu waktu.            │
+│ Materi                                                             │
+│ Pahami konsepnya. Lalu coba simulasinya.                           │
+│ Pilih topik untuk belajar melalui penjelasan dan ilustrasi.        │
 ├─────────────────────────────────┬─────────────────────────────────┤
 │ CPU Scheduling                  │ Page Replacement                │
-│ FCFS · SJF · Round Robin        │ FIFO · LRU · Optimal            │
-│                                 │                                 │
-│ Pelajari bagaimana proses       │ Lihat bagaimana halaman         │
-│ mendapat giliran CPU.           │ diganti saat frame terbatas.    │
-│ [Buka modul →]                  │ [Buka modul →]                  │
+│ Ilustrasi antrean proses,       │ Ilustrasi page, frame,          │
+│ CPU, dan Gantt Chart            │ reference string, dan fault    │
+│ [Pelajari CPU Scheduling →]     │ [Pelajari Page Replacement →]  │
 └─────────────────────────────────┴─────────────────────────────────┘
+│ Materi terpilih: konsep → diagram → contoh langkah → ringkasan     │
+│ [Coba Simulasi]                                                    │
+└───────────────────────────────────────────────────────────────────┘
 ```
 
-Gunakan ikon kecil yang relevan, bukan gambar stok besar. Jangan menambahkan statistik historis seperti “total simulasi” kecuali aplikasi benar-benar menyimpan data tersebut.
+Gunakan diagram atau ilustrasi buatan sendiri yang menjelaskan konsep, bukan gambar stok besar. Terapkan nuansa retro pada hero Materi melalui judul display, label kecil seperti “OS FIELD NOTES”, blok coral/kuning, dan bentuk lingkaran atau garis sederhana. Jangan sampai ornamen mengalahkan materi. Materi CPU Scheduling sebaiknya memiliki ilustrasi antrean proses dan Gantt Chart. Materi Page Replacement sebaiknya memiliki ilustrasi reference string dan frame memori yang berubah per langkah. Setiap ilustrasi diberi label, keterangan, dan urutan baca yang jelas. Hindari statistik dekoratif.
 
 ## Halaman 2 — CPU Scheduling
 
@@ -301,29 +335,29 @@ Kontrol:
 **Tujuan:** membandingkan performa beberapa algoritma dengan input yang sama.
 
 Susunan:
-1. Judul dan keterangan bahwa input yang sama digunakan.
-2. Pilihan perbandingan CPU Scheduling atau Page Replacement.
-3. Tabel hasil.
-4. Grafik batang sederhana jika benar-benar membantu.
-5. Catatan interpretasi metrik.
+1. Judul dan keterangan bahwa input yang sama digunakan untuk semua algoritma dalam satu topik.
+2. Dua tab/segmented control: **CPU Scheduling** dan **Page Replacement**.
+3. Tabel hasil lengkap untuk seluruh algoritma pada topik terpilih.
+4. Grafik batang terpisah untuk metrik yang relevan jika membantu.
+5. Catatan singkat tentang cara membaca hasil dan keterbatasan kesimpulan.
 
-Tabel CPU:
+Tabel CPU Scheduling — metrik wajib:
 
-| Algoritma | Avg. Waiting Time | Avg. Turnaround Time | Avg. Response Time |
-|---|---:|---:|---:|
-| FCFS | hasil hitung | hasil hitung | hasil hitung |
-| SJF | hasil hitung | hasil hitung | hasil hitung |
-| Round Robin | hasil hitung | hasil hitung | hasil hitung |
+| Algoritma | Rata-rata Waiting Time | Rata-rata Turnaround Time |
+|---|---:|---:|
+| FCFS | hasil hitung | hasil hitung |
+| SJF Non-Preemptive | hasil hitung | hasil hitung |
+| Round Robin | hasil hitung | hasil hitung |
 
-Tabel Page Replacement:
+Tabel Page Replacement — metrik wajib:
 
-| Algoritma | Page Fault | Page Hit | Hit Ratio |
-|---|---:|---:|---:|
-| FIFO | hasil hitung | hasil hitung | hasil hitung |
-| LRU | hasil hitung | hasil hitung | hasil hitung |
-| Optimal | hasil hitung | hasil hitung | hasil hitung |
+| Algoritma | Page Hit | Page Fault |
+|---|---:|---:|
+| FIFO | hasil hitung | hasil hitung |
+| LRU | hasil hitung | hasil hitung |
+| Optimal | hasil hitung | hasil hitung |
 
-Gunakan tabel sebagai media utama. Jangan membandingkan metrik dengan satuan berbeda pada satu sumbu grafik. Jangan menyebut algoritma “terbaik” tanpa menjelaskan metrik yang digunakan. Perbarui semua hasil jika input berubah.
+Response Time, Hit Ratio, Fault Ratio, dan Gantt Chart boleh menjadi informasi tambahan, tetapi tidak boleh menggantikan metrik wajib di atas. Gunakan tabel sebagai media utama. Jangan membandingkan metrik dengan satuan berbeda pada satu sumbu grafik. Jika memberi label hasil terbaik, sebutkan metrik yang menjadi dasar: rata-rata WT/TAT lebih rendah, Page Hit lebih tinggi, atau Page Fault lebih rendah. Jangan menyatakan satu algoritma selalu terbaik untuk semua input. Perbarui semua hasil jika input berubah.
 
 ## 7. Visualisasi algoritma
 
@@ -363,7 +397,7 @@ Gunakan tabel sebagai media utama. Jangan membandingkan metrik dengan satuan ber
 | Semua langkah selesai | Tampilkan “Simulasi selesai” |
 
 Contoh empty state:
-- Dashboard: “Pilih modul untuk mulai belajar.”
+- Materi: “Pilih topik untuk mulai belajar.”
 - Tabel proses: “Belum ada proses. Tambahkan data proses terlebih dahulu.”
 - Hasil CPU: “Jalankan simulasi untuk melihat Gantt Chart dan metrik.”
 - Page Replacement: “Masukkan reference string dan jumlah frame untuk memulai.”
@@ -379,7 +413,7 @@ Aksesibilitas dasar:
 
 ## 9. Animasi
 
-Gunakan transisi 120–200 ms untuk hover tombol, menu aktif, dan highlight langkah. Hindari partikel, glow, parallax, animasi latar, serta gerakan yang membuat pengguna menunggu. Hormati `prefers-reduced-motion`.
+Gunakan transisi 120–200 ms untuk hover tombol, menu aktif, dan highlight langkah. Efek yang sesuai: perubahan warna, pergeseran 1–2 px, atau garis aksen yang muncul. Hindari partikel, glow, parallax, animasi latar, serta gerakan yang membuat pengguna menunggu. Hormati `prefers-reduced-motion`.
 
 ## 10. Responsif
 
@@ -393,42 +427,49 @@ Letakkan token global di `css/style.css`. Contoh:
 
 ```css
 :root {
-  --color-bg: #F5F7FA;
-  --color-surface: #FFFFFF;
-  --color-sidebar: #172B3A;
-  --color-text: #172B3A;
-  --color-text-muted: #64748B;
-  --color-border: #E2E8F0;
-  --color-primary: #167D8D;
-  --color-primary-hover: #116775;
-  --color-primary-soft: #E5F4F5;
+  --color-bg: #F7F0E2;
+  --color-surface: #FFFDF7;
+  --color-surface-alt: #EFE3CF;
+  --color-sidebar: #172D3A;
+  --color-sidebar-hover: #254553;
+  --color-text: #172D3A;
+  --color-text-muted: #64716F;
+  --color-border: #D9CEBA;
+  --color-primary: #087E83;
+  --color-primary-hover: #06666B;
+  --color-primary-soft: #D9EFEB;
+  --color-coral: #F07861;
+  --color-yellow: #F2C75C;
   --color-success: #247A55;
-  --color-success-soft: #E8F5EE;
-  --color-warning: #B96A20;
-  --color-warning-soft: #FFF3E5;
+  --color-success-soft: #E2F1E5;
+  --color-warning: #A85B20;
+  --color-warning-soft: #FBE9D2;
   --color-danger: #B54747;
-  --color-danger-soft: #FCECEC;
+  --color-danger-soft: #F8E2DD;
 
-  --font-body: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --shadow-panel: 0 2px 8px rgb(23 43 58 / 4%);
+  --font-display: "VCR OSD Mono", "Courier New", monospace;
+  --font-body: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --shadow-panel: 0 3px 0 rgb(23 45 58 / 8%);
 }
 ```
 
 Pembagian file:
 - `style.css`: token, reset ringan, font, layout, tombol, input, tabel, status.
-- `dashboard.css`: tampilan khusus Ikhtisar.
+- `materi.css`: tampilan khusus halaman Materi dan pilihan topik.
 - `simulator.css`: form simulasi, Gantt Chart, frame, metrik, tabel langkah, kontrol.
 
 Hindari mengulang aturan tombol dan input di banyak file.
 
 ## 12. Checklist desain
 
-- [ ] Dashboard memiliki hierarki visual yang jelas.
+- [ ] Halaman Materi memiliki hierarki visual yang jelas.
 - [ ] Navigasi konsisten di semua halaman.
-- [ ] Warna aksen digunakan secara hemat.
+- [ ] Warna aksen coral dan kuning digunakan secara hemat.
+- [ ] VCR OSD Mono hanya dipakai untuk judul/aksen, bukan paragraf dan tabel padat.
+- [ ] Nuansa retro tidak mengganggu keterbacaan visualisasi algoritma.
 - [ ] Form dan pesan validasi mudah dipahami.
 - [ ] Gantt Chart mudah dibaca.
 - [ ] Tabel frame memperlihatkan perubahan per langkah.
@@ -441,4 +482,4 @@ Hindari mengulang aturan tombol dan input di banyak file.
 
 ## 13. Prinsip akhir
 
-Desain tidak perlu terlihat mewah. Tampilan akan terasa matang jika hierarki informasi jelas, komponen konsisten, visualisasi tepat, dan interaksi dapat diprediksi. Bangun struktur dasar dahulu, lalu poles visual setelah fungsi inti berjalan.
+Desain boleh terasa santai dan retro, tetapi bukan berarti setiap bagian harus ramai. Gunakan VCR OSD Mono sebagai aksen display, krem sebagai kanvas, teal untuk aksi utama, dan coral/kuning untuk penekanan visual yang terukur. Tampilan akan terasa matang jika hierarki informasi jelas, komponen konsisten, visualisasi tepat, dan interaksi dapat diprediksi. Bangun struktur dasar dahulu, lalu poles detail visual setelah fungsi inti berjalan.
