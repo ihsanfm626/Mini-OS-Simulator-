@@ -69,7 +69,7 @@ function runSJF(processes) {
             currentTime = nextArrival;
             continue;
         }
-        
+
         // Pilih proses dengan Burst Time terpendek (Non-Preemptive)
         // Jika BT sama, pilih AT terkecil, jika AT sama, pilih original index
         readyQueue.sort((a, b) => a.bt - b.bt || a.at - b.at || a.originalIndex - b.originalIndex);
@@ -111,3 +111,28 @@ function runSJF(processes) {
         completedCount++;
         currentTime = end;
     }
+    // Kembalikan metrik sesuai urutan input asli
+    const metricsList = processes.map(orig => metricsMap[orig.id]);
+
+    const totalCT = metricsList.reduce((acc, m) => acc + m.ct, 0);
+    const totalTAT = metricsList.reduce((acc, m) => acc + m.tat, 0);
+    const totalWT = metricsList.reduce((acc, m) => acc + m.wt, 0);
+    const totalRT = metricsList.reduce((acc, m) => acc + m.rt, 0);
+    const count = metricsList.length;
+
+    return {
+        timeline,
+        metrics: metricsList,
+        averages: {
+            avgCT: Number((totalCT / count).toFixed(2)),
+            avgTAT: Number((totalTAT / count).toFixed(2)),
+            avgWT: Number((totalWT / count).toFixed(2)),
+            avgRT: Number((totalRT / count).toFixed(2))
+        },
+        steps
+    };
+}
+
+if (typeof window !== 'undefined') {
+    window.runSJF = runSJF;
+}
