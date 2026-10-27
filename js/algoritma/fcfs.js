@@ -44,3 +44,84 @@ function runFCFS(processes) {
 
     for (let i = 0; i < procs.length; i++) {
         const p = procs[i];
+
+        // Jika CPU menganggur (idle) sebelum proses tiba
+        if (currentTime < p.at) {
+            const idleDuration = p.at - currentTime;
+            timeline.push({
+                id: 'Idle',
+                start: currentTime,
+                end: p.at,
+                duration: idleDuration,
+                isIdle: true
+            });
+
+            stepCount++;
+            steps.push({
+                step: stepCount,
+                timeStart: currentTime,
+                timeEnd: p.at,
+                currentProcess: 'Idle',
+                isIdle: true,
+                description: `CPU menganggur (idle) dari waktu ${currentTime} hingga ${p.at} karena belum ada proses yang tiba di antrean siap.`
+            });
+
+            currentTime = p.at;
+        }
+
+        const start = currentTime;
+        const end = currentTime + p.bt;
+        const firstStart = start;
+
+        timeline.push({
+            id: p.id,
+            start: start,
+            end: end,
+            duration: p.bt,
+            isIdle: false
+        });
+
+        metricsMap[p.id].startTime = firstStart;
+        metricsMap[p.id].ct = end;
+        metricsMap[p.id].tat = end - p.at;
+        metricsMap[p.id].wt = metricsMap[p.id].tat - p.bt;
+        metricsMap[p.id].rt = firstStart - p.at;
+
+        stepCount++;
+        steps.push({
+            step: stepCount,
+            timeStart: start,
+            timeEnd: end,
+            currentProcess: p.id,
+            isIdle: false,
+            description: `Proses ${p.id} dipilih karena memiliki waktu kedatangan paling awal (AT = ${p.at}) di antara proses yang siap. Dieksekusi hingga selesai pada waktu ${end}.`
+        });
+
+        currentTime = end;
+    }
+
+    // Kembalikan metrik sesuai urutan input asli
+    const metricsList = processes.map(orig => metricsMap[orig.id]);
+
+    const totalCT = metricsList.reduce((acc, m) => acc + m.ct, 0);
+    const totalTAT = metricsList.reduce((acc, m) => acc + m.tat, 0);
+    const totalWT = metricsList.reduce((acc, m) => acc + m.wt, 0);
+    const totalRT = metricsList.reduce((acc, m) => acc + m.rt, 0);
+    const count = metricsList.length;
+
+    return {
+        timeline,
+        metrics: metricsList,
+        averages: {
+            avgCT: Number((totalCT / count).toFixed(2)),
+            avgTAT: Number((totalTAT / count).toFixed(2)),
+            avgWT: Number((totalWT / count).toFixed(2)),
+            avgRT: Number((totalRT / count).toFixed(2))
+        },
+        steps
+    };
+}
+
+if (typeof window !== 'undefined') {
+    window.runFCFS = runFCFS;
+}
