@@ -44,3 +44,26 @@ function runFIFO(referenceString, frameCount) {
             let targetFrameIndex;
             let replacedPage = null;
 
+            const emptyFrameIndex = frames.indexOf(null);
+            if (emptyFrameIndex !== -1) {
+                targetFrameIndex = emptyFrameIndex;
+                frames[targetFrameIndex] = page;
+                fifoQueue.push(targetFrameIndex);
+
+                steps.push({
+                    step: stepNum,
+                    page: page,
+                    frames: [...frames],
+                    status: 'FAULT',
+                    replacedPage: null,
+                    targetFrameIndex: targetFrameIndex,
+                    description: `Halaman ${page} belum ada di memori (Page Fault). Dimasukkan ke Frame ${targetFrameIndex + 1} yang masih kosong.`
+                });
+            } else {
+                targetFrameIndex = fifoQueue.shift();
+                replacedPage = frames[targetFrameIndex];
+                frames[targetFrameIndex] = page;
+                fifoQueue.push(targetFrameIndex);
+
+
+
