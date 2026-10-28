@@ -44,6 +44,11 @@ function initMemoriUI() {
 
     if (btnClear) {
         btnClear.addEventListener('click', () => {
+            if (inputRef && inputRef.value.trim()) {
+                if (!confirm('Kosongkan reference string?')) {
+                    return;
+                }
+            }
             if (inputRef) {
                 inputRef.value = '';
                 inputRef.focus();
