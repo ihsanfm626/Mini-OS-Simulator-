@@ -1,5 +1,5 @@
 /**
- * Algoritma CPU Scheduling: Round Robin
+ * Algoritma CPU Scheduling: Round Robin (RR)
  * */
  
 function runRoundRobin(processes, quantum) {
