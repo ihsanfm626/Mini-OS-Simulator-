@@ -68,5 +68,96 @@ function initCPUUI() {
         });
     }
 
+     if (btnClearProcs) {
+        btnClearProcs.addEventListener('click', () => {
+            if (cpuProcesses.length > 0 && confirm('Kosongkan semua daftar proses?')) {
+                cpuProcesses = [];
+                window.cpuProcesses = cpuProcesses;
+                editingProcessIndex = -1;
+                renderProcessTable();
+                resetCPUSimulationView();
+                if (typeof window.refreshComparisonView === 'function') {
+                    window.refreshComparisonView();
+                }
+            }
+        });
+    }
+
+    if (btnRunInstant) {
+        btnRunInstant.addEventListener('click', () => {
+            runCPUSimulation(false);
+        });
+    }
+
+    cpuStepper = new SimulationStepper({
+        speed: 1200,
+        onStepChange: (stepIndex) => {
+            updateCPUStepView(stepIndex);
+        },
+        onComplete: () => {
+            const expl = document.getElementById('cpu-step-explanation');
+            if (expl) {
+                expl.innerHTML = `<span class="badge-success">Simulasi Selesai</span> Semua proses telah selesai dieksekusi oleh CPU. Periksa tabel metrik lengkap di bawah.`;
+            }
+            updateCPUStepperControls(true);
+        }
+    });
+
+    if (btnStart) {
+        btnStart.addEventListener('click', () => {
+            if (!cpuSimulationResult) {
+                const ok = runCPUSimulation(true);
+                if (!ok) return;
+            }
+            cpuStepper.start();
+            updateCPUStepperControls();
+        });
+    }
+
+    if (btnPause) {
+        btnPause.addEventListener('click', () => {
+            cpuStepper.pause();
+            updateCPUStepperControls();
+        });
+    }
+
+    if (btnResume) {
+        btnResume.addEventListener('click', () => {
+            cpuStepper.resume();
+            updateCPUStepperControls();
+        });
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            if (!cpuSimulationResult) {
+                const ok = runCPUSimulation(true);
+                if (!ok) return;
+            }
+            cpuStepper.nextStep();
+            updateCPUStepperControls();
+        });
+    }
+
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            if (cpuStepper) {
+                cpuStepper.prevStep();
+                updateCPUStepperControls();
+            }
+        });
+    }
+
+    if (btnReset) {
+        btnReset.addEventListener('click', () => {
+            resetCPUSimulationView();
+        });
+    }
+
+    // Render tabel awal
+    renderProcessTable();
+}
+
+
 
 
