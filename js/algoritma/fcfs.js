@@ -1,6 +1,6 @@
 /**
  * Algoritma CPU Scheduling: First-Come, First-Served (FCFS)
- */
+ **/
 
 function runFCFS(processes) {
     if (!processes || processes.length === 0) {
