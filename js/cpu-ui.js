@@ -154,7 +154,6 @@ function initCPUUI() {
         });
     }
 
-    // Render tabel awal
     renderProcessTable();
 }
 
@@ -314,6 +313,228 @@ function showCPUError(msg) {
         alertBox.textContent = msg;
         alertBox.classList.remove('hidden');
     }
+}
+
+/**
+ * Jalankan Simulasi CPU
+ */
+function runCPUSimulation(isStepperMode = false) {
+    showCPUError('');
+
+    if (cpuProcesses.length === 0) {
+        showCPUError('Tambahkan minimal satu proses sebelum menjalankan simulasi.');
+        return false;
+    }
+
+    const algoSelect = document.getElementById('select-cpu-algo');
+    const algo = algoSelect ? algoSelect.value : 'FCFS';
+    const quantumInput = document.getElementById('input-time-quantum');
+
+    let quantum = 2;
+    if (algo === 'RR') {
+        const qVal = quantumInput ? quantumInput.value.trim() : '';
+        if (!qVal || isNaN(qVal) || !Number.isInteger(Number(qVal)) || Number(qVal) <= 0) {
+            showCPUError('Time Quantum diperlukan untuk Round Robin dan harus berupa bilangan bulat > 0.');
+            if (quantumInput) quantumInput.focus();
+            return false;
+        }
+        quantum = parseInt(qVal, 10);
+    }
+
+    if (algo === 'FCFS') {
+        cpuSimulationResult = runFCFS(cpuProcesses);
+    } else if (algo === 'SJF') {
+        cpuSimulationResult = runSJF(cpuProcesses);
+    } else if (algo === 'RR') {
+        cpuSimulationResult = runRoundRobin(cpuProcesses, quantum);
+    }
+
+    const resultSection = document.getElementById('cpu-results-section');
+    if (resultSection) resultSection.classList.remove('hidden');
+
+    if (isStepperMode) {
+        cpuStepper.setTotalSteps(cpuSimulationResult.steps.length);
+        cpuStepper.goToStep(1);
+    } else {
+        cpuStepper.pause();
+        const ganttContainer = document.getElementById('cpu-gantt-container');
+        renderGanttChart(ganttContainer, cpuSimulationResult.timeline, -1);
+        renderCPUMetricsTable(cpuSimulationResult.metrics, cpuSimulationResult.averages);
+
+        const expl = document.getElementById('cpu-step-explanation');
+        if (expl) {
+            expl.innerHTML = `<span class="badge-info">Hasil Lengkap</span> Simulasi selesai dijalankan sekaligus. Total waktu eksekusi: ${cpuSimulationResult.timeline[cpuSimulationResult.timeline.length - 1].end} unit waktu. Gunakan tombol stepper di atas untuk menelusuri langkah demi langkah.`;
+        }
+
+        cpuStepper.totalSteps = cpuSimulationResult.steps.length;
+        cpuStepper.currentStep = cpuSimulationResult.steps.length;
+        cpuStepper.isPlaying = false;
+
+        const stepBadge = document.getElementById('cpu-current-step-badge');
+        if (stepBadge) stepBadge.textContent = `Langkah: ${cpuSimulationResult.steps.length} / ${cpuSimulationResult.steps.length}`;
+
+        updateCPUStepperControls(true);
+    }
+
+    return true;
+}
+
+/**
+ * Update UI saat step stepper berubah
+ */
+function updateCPUStepView(stepIndex) {
+    if (!cpuSimulationResult || !cpuSimulationResult.steps) return;
+
+    const ganttContainer = document.getElementById('cpu-gantt-container');
+    const expl = document.getElementById('cpu-step-explanation');
+    const stepBadge = document.getElementById('cpu-current-step-badge');
+
+    if (stepIndex === 0) {
+        renderGanttChart(ganttContainer, [], -1);
+        if (expl) expl.textContent = 'Simulasi direset. Tekan Mulai atau Langkah Berikutnya.';
+        if (stepBadge) stepBadge.textContent = `Langkah: 0 / ${cpuSimulationResult.steps.length}`;
+        return;
+    }
+
+    const currentStepData = cpuSimulationResult.steps[stepIndex - 1];
+    if (stepBadge) {
+        stepBadge.textContent = `Langkah: ${stepIndex} / ${cpuSimulationResult.steps.length}`;
+    }
+
+    const activeTimeline = cpuSimulationResult.timeline.slice(0, stepIndex);
+    renderGanttChart(ganttContainer, activeTimeline, stepIndex - 1);
+
+    if (expl && currentStepData) {
+        expl.innerHTML = `
+            <strong>Langkah ${currentStepData.step} [Waktu ${currentStepData.timeStart} – ${currentStepData.timeEnd}]:</strong> 
+            ${currentStepData.description}
+        `;
+    }
+
+    renderCPUMetricsTable(cpuSimulationResult.metrics, cpuSimulationResult.averages);
+    updateCPUStepperControls();
+}
+
+/**
+ * Render Tabel Metrik Proses & Nilai Rata-rata
+ */
+function renderCPUMetricsTable(metrics, averages) {
+    const tbody = document.getElementById('table-body-cpu-metrics');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    if (!metrics || metrics.length === 0) return;
+
+    metrics.forEach(m => {
+        const tr = document.createElement('tr');
+        const color = getProcessColor(m.id);
+        tr.innerHTML = `
+            <td>
+                <span class="process-tag" style="background-color: ${color.bg}; color: ${color.text}">
+                    ${m.id}
+                </span>
+            </td>
+            <td>${m.at}</td>
+            <td>${m.bt}</td>
+            <td><strong>${m.ct}</strong></td>
+            <td>${m.tat}</td>
+            <td>${m.wt}</td>
+            <td>${m.rt}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    const avgTr = document.createElement('tr');
+    avgTr.className = 'row-average';
+    avgTr.innerHTML = `
+        <td colspan="3"><strong>Rata-rata</strong></td>
+        <td><strong>${averages.avgCT}</strong></td>
+        <td><strong>${averages.avgTAT}</strong></td>
+        <td><strong>${averages.avgWT}</strong></td>
+        <td><strong>${averages.avgRT}</strong></td>
+    `;
+    tbody.appendChild(avgTr);
+
+    const elAvgWT = document.getElementById('stat-cpu-avg-wt');
+    const elAvgTAT = document.getElementById('stat-cpu-avg-tat');
+    if (elAvgWT) elAvgWT.textContent = `${averages.avgWT} ms`;
+    if (elAvgTAT) elAvgTAT.textContent = `${averages.avgTAT} ms`;
+}
+
+function updateCPUStepperControls(isFinished = false) {
+    const btnStart = document.getElementById('btn-cpu-step-start');
+    const btnPause = document.getElementById('btn-cpu-step-pause');
+    const btnResume = document.getElementById('btn-cpu-step-resume');
+    const btnNext = document.getElementById('btn-cpu-step-next');
+    const btnPrev = document.getElementById('btn-cpu-step-prev');
+
+    if (!cpuStepper) return;
+
+    if (cpuStepper.isPlaying) {
+        if (btnStart) btnStart.disabled = true;
+        if (btnPause) btnPause.disabled = false;
+        if (btnResume) btnResume.disabled = true;
+        if (btnNext) btnNext.disabled = true;
+    } else {
+        if (btnPause) btnPause.disabled = true;
+        if (cpuStepper.currentStep > 0 && cpuStepper.currentStep < cpuStepper.totalSteps) {
+            if (btnResume) btnResume.disabled = false;
+            if (btnStart) btnStart.disabled = true;
+        } else {
+            if (btnStart) btnStart.disabled = false;
+            if (btnResume) btnResume.disabled = true;
+        }
+        if (btnNext) btnNext.disabled = isFinished || (cpuStepper.totalSteps > 0 && cpuStepper.currentStep >= cpuStepper.totalSteps);
+    }
+
+    if (btnPrev) {
+        btnPrev.disabled = !cpuStepper || cpuStepper.currentStep <= 1;
+    }
+}
+
+function resetCPUSimulationView() {
+    if (cpuStepper) cpuStepper.pause();
+    cpuSimulationResult = null;
+
+    const ganttContainer = document.getElementById('cpu-gantt-container');
+    const tbody = document.getElementById('table-body-cpu-metrics');
+    const expl = document.getElementById('cpu-step-explanation');
+    const stepBadge = document.getElementById('cpu-current-step-badge');
+    const resultSection = document.getElementById('cpu-results-section');
+
+    if (ganttContainer) renderGanttChart(ganttContainer, []);
+    if (tbody) tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">Jalankan simulasi untuk melihat metrik.</td></tr>';
+    if (expl) expl.textContent = 'Klik "Mulai" atau "Langkah Berikutnya" untuk menjalankan simulasi secara bertahap.';
+    if (stepBadge) stepBadge.textContent = 'Langkah: - / -';
+    if (resultSection) resultSection.classList.add('hidden');
+
+    const elAvgWT = document.getElementById('stat-cpu-avg-wt');
+    const elAvgTAT = document.getElementById('stat-cpu-avg-tat');
+    if (elAvgWT) elAvgWT.textContent = '-';
+    if (elAvgTAT) elAvgTAT.textContent = '-';
+
+    updateCPUStepperControls();
+}
+
+function getCPUProcesses() {
+    return cpuProcesses;
+}
+
+function setCPUProcesses(newProcs) {
+    if (Array.isArray(newProcs)) {
+        cpuProcesses = newProcs;
+        window.cpuProcesses = cpuProcesses;
+        renderProcessTable();
+        resetCPUSimulationView();
+    }
+}
+
+if (typeof window !== 'undefined') {
+    window.initCPUUI = initCPUUI;
+    window.cpuProcesses = cpuProcesses;
+    window.getCPUProcesses = getCPUProcesses;
+    window.setCPUProcesses = setCPUProcesses;
+    window.runCPUSimulation = runCPUSimulation;
 }
 
 
