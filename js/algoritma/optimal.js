@@ -128,3 +128,7 @@ function runOptimal(referenceString, frameCount) {
         }
     };
 }
+
+if (typeof window !== 'undefined') {
+    window.runOptimal = runOptimal;
+}
