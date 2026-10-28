@@ -65,5 +65,39 @@ function runFIFO(referenceString, frameCount) {
                 frames[targetFrameIndex] = page;
                 fifoQueue.push(targetFrameIndex);
 
+                steps.push({
+                    step: stepNum,
+                    page: page,
+                    frames: [...frames],
+                    status: 'FAULT',
+                    replacedPage: replacedPage,
+                    targetFrameIndex: targetFrameIndex,
+                    description: `Halaman ${page} tidak ada di memori (Page Fault). Halaman ${replacedPage} di Frame ${targetFrameIndex + 1} diganti karena merupakan halaman yang paling dahulu masuk ke memori (FIFO).`
+                });
+            }
+        }
+    });
+
+    const total = referenceString.length;
+    const hitRatio = Number(((pageHits / total) * 100).toFixed(2));
+    const faultRatio = Number(((pageFaults / total) * 100).toFixed(2));
+
+    return {
+        steps,
+        metrics: {
+            pageFaults,
+            pageHits,
+            totalReferences: total,
+            hitRatio,
+            faultRatio
+        }
+    };
+}
+
+if (typeof window !== 'undefined') {
+    window.runFIFO = runFIFO;
+}
+
+
 
 
