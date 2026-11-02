@@ -53,7 +53,6 @@
   line-height: 1.6;
 }
 
-/* Pemilih Topik Materi (Tabs) */
 .materi-topic-selector {
   display: flex;
   gap: 12px;
@@ -73,5 +72,171 @@
   font-weight: 600;
   color: var(--color-text);
   transition: all 150ms ease;
+}
+
+.topic-tab-btn:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-alt);
+}
+
+.topic-tab-btn.active {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary-hover);
+  box-shadow: 0 2px 4px rgba(8, 126, 131, 0.2);
+}
+
+.topic-tab-btn .topic-number {
+  font-family: var(--font-display);
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.topic-tab-btn.active .topic-number {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-yellow);
+}
+
+.materi-content-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.materi-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px;
+  box-shadow: var(--shadow-panel);
+}
+
+.materi-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.materi-badge-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-alt);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+.materi-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.materi-body-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.diagram-box {
+  background-color: #FAF6EE;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.diagram-caption {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 14px;
+  font-weight: 500;
+}
+
+.diagram-queue-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.queue-node {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  text-align: center;
+  min-width: 110px;
+  box-shadow: 0 2px 0 rgba(23, 45, 58, 0.05);
+}
+
+.queue-node.node-cpu {
+  background-color: var(--color-sidebar);
+  color: #FFFDF7;
+  border-color: var(--color-sidebar);
+}
+
+.queue-node.node-cpu .node-title {
+  color: var(--color-yellow);
+}
+
+.node-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.node-desc {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.queue-arrow {
+  color: var(--color-coral);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.diagram-memory-flow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ref-string-pill-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ref-pill {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ref-pill.active {
+  background-color: var(--color-coral);
+  color: #FFFFFF;
+  border-color: var(--color-coral);
 }
 
