@@ -1,0 +1,77 @@
+/**
+ * materi.css — Mini OS Simulator
+ */
+
+/* Hero Banner Edukasi Retro 
+*/
+.materi-hero {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-alt) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-panel);
+}
+
+.materi-hero::after {
+  content: '';
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 120, 97, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--color-coral);
+  background-color: rgba(240, 120, 97, 0.12);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.materi-hero h1 {
+  font-size: 32px;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.materi-hero p {
+  color: var(--color-text-muted);
+  max-width: 780px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Pemilih Topik Materi (Tabs) */
+.materi-topic-selector {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.topic-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  transition: all 150ms ease;
+}
+
