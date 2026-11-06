@@ -2,7 +2,7 @@
  * cpu-ui.js — Mini OS Simulator
  */
 
-/ Data proses awal 
+// Data proses awal 
 let cpuProcesses = [
     { id: 'P1', at: 0, bt: 5 },
     { id: 'P2', at: 1, bt: 3 },
@@ -171,6 +171,12 @@ function handleProcessFormSubmit() {
     const btStr = inputBT.value.trim();
 
     showCPUError('');
+
+    // Batasan maksimal 20 proses
+    if (editingProcessIndex === -1 && cpuProcesses.length >= 20) {
+        showCPUError('Maksimal 20 proses. Hapus proses yang ada terlebih dahulu untuk menambahkan yang baru.');
+        return;
+    }
 
     // Validasi Process ID
     if (!id) {
