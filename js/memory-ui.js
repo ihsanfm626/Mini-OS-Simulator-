@@ -426,7 +426,7 @@ function setMemoryData(refStr, fCount) {
 }
 
 if (typeof window !== 'undefined') {
-    window.initMemoryUI = initMemoryUI;
+    window.initMemoriUI = initMemoriUI;
     window.runMemorySimulation = runMemorySimulation;
     window.getMemoryData = getMemoryData;
     window.setMemoryData = setMemoryData;
