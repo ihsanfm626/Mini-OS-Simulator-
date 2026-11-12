@@ -23,7 +23,7 @@ function runFIFO(referenceString, frameCount) {
     let pageFaults = 0;
     let pageHits = 0;
 
-    referenceString.forEach((page, index) => {
+    referenceString.forEach((page, stepIndex) => {
         const stepNUM = stepIndex + 1;
         const existingIndex = frames.indexOf(page);
 
@@ -36,7 +36,7 @@ function runFIFO(referenceString, frameCount) {
                 frames: [...frames],
                 status: 'Hit',
                 replacedPage: null,
-                targetFrameIndex: existingIndex
+                targetFrameIndex: existingIndex,
                 description: 'Halaman ${page} sudah berada di frame ${existingIndex + 1}. Terjadi Page Hit (tidak ada halaman yang diganti).'
          });
         } else {
@@ -51,7 +51,7 @@ function runFIFO(referenceString, frameCount) {
                 fifoQueue.push(targetFrameIndex);
 
                 steps.push({
-                    step: stepNum,
+                    step: stepNUM,
                     page: page,
                     frames: [...frames],
                     status: 'FAULT',
@@ -66,7 +66,7 @@ function runFIFO(referenceString, frameCount) {
                 fifoQueue.push(targetFrameIndex);
 
                 steps.push({
-                    step: stepNum,
+                    step: stepNUM,
                     page: page,
                     frames: [...frames],
                     status: 'FAULT',

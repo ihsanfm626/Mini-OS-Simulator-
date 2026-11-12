@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initMateriSection();
     initCPUUI();
-    initMemoryUI();
+    initMemoriUI();
     initComparisonSection();
     initMobileNav();
 });
