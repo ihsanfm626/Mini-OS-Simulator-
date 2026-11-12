@@ -133,6 +133,15 @@ p {
   box-shadow: 0 0 0 2px rgba(240, 120, 97, 0.3);
 }
 
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+  position: relative;
+}
+
 .brand-title {
   font-size: 18px;
   color: #FFFDF7;
