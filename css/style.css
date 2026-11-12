@@ -35,3 +35,598 @@
   --radius-lg: 14px;
   --shadow-panel: 0 3px 0 rgb(23 45 58 / 8%);
 }
+
+/* 3. Reset Ringan */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 4. Tipografi Display & Hierarki */
+h1, .hero-title, .brand-title, .section-number, .wordmark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+p {
+  color: var(--color-text);
+}
+
+.sub-text {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 5. Tata Letak Utama (Desktop) */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Gelap Retro (228px) */
+.app-sidebar {
+  width: 236px;
+  background-color: var(--color-sidebar);
+  color: #FFFDF7;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-header {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-coral);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(240, 120, 97, 0.3);
+}
+
+.brand-title {
+  font-size: 18px;
+  color: #FFFDF7;
+  letter-spacing: 0.05em;
+}
+
+.brand-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-yellow);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-top: 6px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: #B4C4CE;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all 150ms ease;
+  position: relative;
+}
+
+.nav-item:hover {
+  background-color: var(--color-sidebar-hover);
+  color: #FFFDF7;
+}
+
+.nav-item.active {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-coral);
+  border-radius: 50%;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: #7D929E;
+}
+
+.sidebar-footer span {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--color-yellow);
+  font-size: 11px;
+}
+
+/* Area Konten Utama */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--color-bg);
+}
+
+/* Header Konten (~72px) */
+.app-header {
+  height: 72px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(255, 253, 247, 0.7);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.header-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.breadcrumb-root {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+}
+
+.breadcrumb-sep {
+  opacity: 0.5;
+}
+
+.header-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.status-dot-active {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.btn-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+/* Area Isi Section */
+.content-wrapper {
+  padding: 32px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.page-intro {
+  margin-bottom: 4px;
+}
+
+.page-intro h1 {
+  margin-bottom: 6px;
+}
+
+.page-intro p {
+  color: var(--color-text-muted);
+  max-width: 850px;
+  font-size: 15px;
+}
+
+/* 6. Komponen Panel */
+.panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-panel);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panel-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.badge-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+/* 7. Komponen Tombol */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 120ms ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--color-primary-hover);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-surface-alt);
+  border-color: #C5BAA4;
+}
+
+.btn-coral {
+  background-color: var(--color-coral);
+  color: #FFFFFF;
+  border: 1px solid #D65C45;
+}
+
+.btn-coral:hover:not(:disabled) {
+  background-color: #E26851;
+}
+
+.btn-table-action {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color 120ms ease;
+}
+
+.btn-table-action.btn-edit {
+  color: var(--color-primary);
+}
+
+.btn-table-action.btn-edit:hover {
+  background-color: var(--color-primary-soft);
+}
+
+.btn-table-action.btn-delete {
+  color: var(--color-danger);
+}
+
+.btn-table-action.btn-delete:hover {
+  background-color: var(--color-danger-soft);
+}
+
+/* 8. Komponen Form & Input */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-input, .form-select {
+  height: 42px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(8, 126, 131, 0.15);
+}
+
+.input-hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* 9. Pesan Status & Alert */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-danger {
+  background-color: var(--color-danger-soft);
+  color: var(--color-danger);
+  border: 1px solid rgba(181, 71, 71, 0.3);
+}
+
+.alert-info {
+  background-color: var(--color-info-soft);
+  color: var(--color-info);
+  border: 1px solid rgba(65, 105, 161, 0.3);
+}
+
+.badge-success {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+  border: 1px solid rgba(36, 122, 85, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.badge-warning {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--color-warning-soft);
+  color: var(--color-warning);
+  border: 1px solid rgba(168, 91, 32, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.badge-info {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--color-info-soft);
+  color: var(--color-info);
+  border: 1px solid rgba(65, 105, 161, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+/* 10. Komponen Tabel Standar */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-surface);
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #F8FAFC;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table td {
+  padding: 12px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(239, 227, 207, 0.3);
+}
+
+.empty-cell {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 28px !important;
+  font-style: italic;
+}
+
+.process-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.row-average {
+  background-color: var(--color-surface-alt) !important;
+  font-weight: 600;
+}
+
+/* Empty State Global */
+.empty-state {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(23, 45, 58, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+}
+
+/* 11. Media Queries Responsif */
+@media (max-width: 900px) {
+  .app-sidebar {
+    position: fixed;
+    left: -260px;
+    transition: left 200ms ease;
+  }
+  .app-sidebar.mobile-open {
+    left: 0;
+  }
+  .mobile-overlay.active {
+    display: block;
+  }
+  .btn-mobile-toggle {
+    display: block;
+  }
+  .app-header {
+    padding: 0 16px;
+  }
+  .content-wrapper {
+    padding: 20px 16px;
+    gap: 20px;
+  }
+}
