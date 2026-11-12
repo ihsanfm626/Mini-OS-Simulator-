@@ -1,0 +1,446 @@
+/**
+ * simulator.css — Mini OS Simulator
+ * Styling Antarmuka Simulator CPU, Gantt Chart, Matriks Memori, Kontrol Bertahap, dan Perbandingan
+ * Mengacu pada F03–F13 FITUR.md dan Bagian 6, 7 DESAIN.md
+ */
+
+/* Grid Form Input Simulasi */
+.sim-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  align-items: flex-end;
+}
+.sim-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Layout Form Page Replacement (F07 - Sejajar Jumlah Frame & Algoritma) */
+.memory-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.memory-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: flex-start;
+}
+@media (max-width: 640px) {
+  .memory-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Toolbar Kontrol Bertahap (F10) */
+.stepper-control-panel {
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stepper-button-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.stepper-status-badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+/* Kotak Penjelasan Langkah (F12) */
+.step-explanation-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 0 rgba(23, 45, 58, 0.04);
+}
+.step-explanation-box strong {
+  color: var(--color-text);
+}
+
+/* ----------------------------------------------------
+   GANTT CHART CPU SCHEDULING (F05 & DESAIN.md Bagian 7)
+------------------------------------------------------- */
+.gantt-container-outer {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-panel);
+  margin-bottom: 24px;
+}
+.gantt-chart-wrapper {
+  overflow-x: auto;
+  padding: 10px 0 24px;
+}
+
+.gantt-bars {
+  display: flex;
+  height: 48px;
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+.gantt-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  transition: opacity 150ms ease, transform 150ms ease;
+  user-select: none;
+  font-family: var(--font-display);
+}
+.gantt-block:last-child {
+  border-right: none;
+}
+
+.gantt-label {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+.gantt-duration {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.gantt-block.idle-block {
+  background-color: #E2DCD2 !important;
+  color: #64716F !important;
+  border-color: #C7BFB3 !important;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 6px,
+    rgba(0, 0, 0, 0.04) 6px,
+    rgba(0, 0, 0, 0.04) 12px
+  );
+}
+
+.gantt-block.is-active-step {
+  box-shadow: inset 0 0 0 3px #FFFFFF, 0 0 8px rgba(0, 0, 0, 0.25);
+  transform: scaleY(1.05);
+  z-index: 2;
+}
+.gantt-block.is-future-step {
+  opacity: 0.25;
+}
+
+/* Sumbu Waktu Gantt */
+.gantt-time-axis {
+  display: flex;
+  position: relative;
+  height: 24px;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.gantt-tick {
+  text-align: right;
+  padding-right: 2px;
+  position: relative;
+}
+
+.gantt-tick::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -6px;
+  width: 1px;
+  height: 6px;
+  background-color: var(--color-border);
+}
+.gantt-tick.start-tick {
+  position: absolute;
+  left: 0;
+  text-align: left;
+}
+
+.gantt-tick.start-tick::before {
+  left: 0;
+  right: auto;
+}
+/* ----------------------------------------------------
+   MATRIKS FRAME MEMORI (F08 & DESAIN.md Bagian 7)
+------------------------------------------------------- */
+.memory-table-scroll-container {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-panel);
+  margin-bottom: 24px;
+  max-width: 100%;
+}
+.memory-frame-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.memory-frame-table th,
+.memory-frame-table td {
+  padding: 10px 14px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  min-width: 52px;
+  white-space: nowrap;
+}
+.sticky-col {
+  position: sticky;
+  left: 0;
+  background-color: #F8FAFC;
+  font-weight: 600;
+  text-align: left;
+  z-index: 10;
+  border-right: 2px solid var(--color-border) !important;
+  min-width: 100px !important;
+}
+/* Baris Referensi Halaman */
+.row-reference th {
+  background-color: #F1E9DA;
+  font-family: var(--font-display);
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.ref-cell {
+  font-weight: bold;
+}
+/* Slot Frame Memori */
+.frame-slot-cell {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--color-text);
+  transition: background-color 150ms ease;
+}
+
+.slot-updated {
+  background-color: var(--color-warning-soft);
+  color: var(--color-warning);
+  font-weight: bold;
+}
+.slot-hit {
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+/* Baris Status (Hit / Fault) */
+.row-status td {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.status-hit {
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.status-fault {
+  background-color: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.victim-cell {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+/* Highlight Kolom Aktif */
+.active-column {
+  outline: 2px solid var(--color-primary);
+  background-color: rgba(8, 126, 131, 0.08) !important;
+}
+
+/* ----------------------------------------------------
+   KARTU RINGKASAN METRIK (F06, F09)
+------------------------------------------------------- */
+.metric-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.metric-stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: 0 2px 0 rgba(23, 45, 58, 0.04);
+}
+
+.stat-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.stat-card-value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+.stat-card-value.val-fault {
+  color: var(--color-warning);
+}
+
+.stat-card-value.val-hit {
+  color: var(--color-success);
+}
+
+/* ----------------------------------------------------
+   HALAMAN PERBANDINGAN ALGORITMA (F11 & DESAIN.md)
+------------------------------------------------------- */
+.comparison-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comp-tab-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.comp-tab-btn.active {
+  background-color: var(--color-sidebar);
+  color: #FFFDF7;
+  border-color: var(--color-sidebar);
+}
+
+.comparison-table td {
+  vertical-align: middle;
+}
+
+.cell-best {
+  background-color: var(--color-success-soft) !important;
+  font-weight: bold;
+  color: var(--color-success);
+}
+
+.metric-val-with-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mini-bar-track {
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  max-width: 160px;
+}
+
+.mini-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  transition: width 300ms ease;
+}
+
+.bar-wt {
+  background-color: var(--color-coral);
+}
+
+.bar-tat {
+  background-color: var(--color-primary);
+}
+
+.bar-fault {
+  background-color: var(--color-warning);
+}
+
+.bar-hit {
+  background-color: var(--color-success);
+}
+
+.comparison-analysis-box {
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-top: 20px;
+}
+
+.analysis-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+
+.highlight-text {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.analysis-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Responsif Simulator */
+@media (max-width: 768px) {
+  .sim-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .stepper-control-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  stepper-button-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
