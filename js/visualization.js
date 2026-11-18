@@ -2,22 +2,22 @@
  * visualization.js — Mini OS Simulator
  */
 
-// Palet warna konsisten untuk proses CPU (kontras dan harmonis di atas kanvas krem)
+// Palet warna konsisten untuk proses CPU (kontras dan harmonis)
 const PROCESS_COLORS = [
-    { bg: '#087E83', text: '#FFFFFF', border: '#06666B' }, // Teal
-    { bg: '#F07861', text: '#FFFFFF', border: '#D65C45' }, // Coral
-    { bg: '#3D8B68', text: '#FFFFFF', border: '#2D6B50' }, // Sage Green
-    { bg: '#DE8F38', text: '#FFFFFF', border: '#B87226' }, // Amber / Ochre
-    { bg: '#6B5B95', text: '#FFFFFF', border: '#544677' }, // Retro Purple
-    { bg: '#4A7C9B', text: '#FFFFFF', border: '#37607A' }, // Slate Blue
-    { bg: '#C05C7E', text: '#FFFFFF', border: '#9E4462' }, // Rosewood
-    { bg: '#5D8A66', text: '#FFFFFF', border: '#45694C' }  // Moss
+    { bg: '#892b4e', text: '#FFFFFF', border: '#453B47' }, // Deep Berry (Primary)
+    { bg: '#32765B', text: '#FFFFFF', border: '#453B47' }, // Retro Forest Green
+    { bg: '#A75B24', text: '#FFFFFF', border: '#453B47' }, // Retro Amber
+    { bg: '#8f485f', text: '#FFFFFF', border: '#453B47' }, // Mauve Secondary
+    { bg: '#453B47', text: '#FFFFFF', border: '#251E28' }, // Dark Eggplant
+    { bg: '#4A7C9B', text: '#FFFFFF', border: '#453B47' }, // Slate Blue
+    { bg: '#70404d', text: '#FFFFFF', border: '#453B47' }, // Plum Tertiary
+    { bg: '#5D8A66', text: '#FFFFFF', border: '#453B47' }  // Sage Green
 ];
 
 const IDLE_COLOR = {
-    bg: '#E2DCD2',
-    text: '#64716F',
-    border: '#C7BFB3'
+    bg: '#e8e2d5',
+    text: '#6D6570',
+    border: '#453B47'
 };
 
 // Map warna statis untuk setiap Process ID agar konsisten antar-render

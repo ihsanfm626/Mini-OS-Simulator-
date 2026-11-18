@@ -3,6 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initClock();
     initMateriSection();
     initCPUUI();
     initMemoriUI();
@@ -10,9 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
 });
 
+function initClock() {
+    const clockEl = document.getElementById('header-clock');
+    if (!clockEl) return;
+    function update() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        clockEl.innerHTML = `<span class="material-symbols-outlined" style="font-size: 15px;">schedule</span><span>${hours}:${minutes} ${ampm}</span>`;
+    }
+    update();
+    setInterval(update, 1000);
+}
+
 
 function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-item');
+    const navLinks = document.querySelectorAll('.nav-item, .nav-link, .dock-item, .mobile-nav-item');
     const sections = document.querySelectorAll('.main-section');
     const pageTitle = document.getElementById('page-title');
     const pageSubtitle = document.getElementById('page-subtitle');
@@ -51,7 +67,7 @@ function initNavigation() {
             targetSec.classList.remove('hidden');
         }
 
-        // Update nav active state
+        // Update nav active state across all header links, dock items, and mobile nav items
         navLinks.forEach(link => {
             if (link.dataset.page === pageKey) {
                 link.classList.add('active');
@@ -60,7 +76,7 @@ function initNavigation() {
             }
         });
 
-        // Update Header
+        // Update Header & Metadata
         const meta = PAGE_METADATA[pageKey] || PAGE_METADATA['materi'];
         if (pageTitle) pageTitle.textContent = meta.title;
         if (pageSubtitle) pageSubtitle.textContent = meta.subtitle;
@@ -70,6 +86,14 @@ function initNavigation() {
         const sidebar = document.querySelector('.app-sidebar');
         if (sidebar && sidebar.classList.contains('mobile-open')) {
             sidebar.classList.remove('mobile-open');
+        }
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer && drawer.classList.contains('active')) {
+            drawer.classList.remove('active');
+        }
+        const overlay = document.getElementById('mobile-overlay');
+        if (overlay && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
         }
 
         // Jika membuka halaman perbandingan, segarkan hasil perbandingan dengan input terkini
@@ -389,19 +413,22 @@ if (typeof window !== 'undefined') {
  */
 function initMobileNav() {
     const toggleBtn = document.getElementById('btn-mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
     const sidebar = document.querySelector('.app-sidebar');
     const overlay = document.getElementById('mobile-overlay');
 
-    if (toggleBtn && sidebar) {
+    if (toggleBtn) {
         toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('mobile-open');
+            if (sidebar) sidebar.classList.toggle('mobile-open');
+            if (drawer) drawer.classList.toggle('active');
             if (overlay) overlay.classList.toggle('active');
         });
     }
 
-    if (overlay && sidebar) {
+    if (overlay) {
         overlay.addEventListener('click', () => {
-            sidebar.classList.remove('mobile-open');
+            if (sidebar) sidebar.classList.remove('mobile-open');
+            if (drawer) drawer.classList.remove('active');
             overlay.classList.remove('active');
         });
     }
