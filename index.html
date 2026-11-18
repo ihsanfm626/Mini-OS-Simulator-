@@ -8,90 +8,93 @@
     <link rel="stylesheet" href="css/materi.css">
     <link rel="stylesheet" href="css/simulator.css">
 </head>
-<body>
-    <div class="mobile-overlay" id="mobile-overlay"></div>
+<body>class="retro-pattern selection:bg-secondary-container selection:text-ink-text">
 
-    <div class="app-container">
-        <!-- Sidebar Gelap Retro (F02) -->
-        <aside class="app-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-brand">
-                    <img src="assets/iconts/Logo.png" alt="Logo" class="brand-logo">
-                    <span class="brand-title">MINI OS SIMULATOR</span>
-                </div>
-            </div>
-
-            <nav class="sidebar-nav">
-                <a href="#materi" class="nav-item active" data-page="materi" id="nav-materi">
-                    <svg class="nav-icon" viewBox="0 0 24 24">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                    </svg>
-                    <span>Materi</span>
-                </a>
-                <a href="#cpu" class="nav-item" data-page="cpu" id="nav-cpu">
-                    <svg class="nav-icon" viewBox="0 0 24 24">
-                        <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                        <rect x="9" y="9" width="6" height="6"></rect>
-                        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path>
-                    </svg>
-                    <span>CPU Scheduling</span>
-                </a>
-                <a href="#memory" class="nav-item" data-page="memory" id="nav-memory">
-                    <svg class="nav-icon" viewBox="0 0 24 24">
-                        <path
-                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                        </path>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                    <span>Page Replacement</span>
-                </a>
-                <a href="#comparison" class="nav-item" data-page="comparison" id="nav-comparison">
-                    <svg class="nav-icon" viewBox="0 0 24 24">
-                        <line x1="18" y1="20" x2="18" y2="10"></line>
-                        <line x1="12" y1="20" x2="12" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="14"></line>
-                    </svg>
-                    <span>Perbandingan</span>
-                </a>
-            </nav>
-
-            <div class="sidebar-footer">
-                <span>Kelompok 7</span>
-                Sistem Operasi
-            </div>
-        </aside>
-
-        <!-- Area Konten Utama -->
-        <div class="app-main">
-            <!-- Header Atas Sticky -->
-            <header class="app-header">
+    <!-- Top Sticky Header Bar -->
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="header-left">
                 <button type="button" class="btn-mobile-toggle" id="btn-mobile-nav-toggle" aria-label="Buka Menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
+                    <span class="material-symbols-outlined">menu</span>
                 </button>
-
-                <div class="header-breadcrumbs">
-                    <span class="breadcrumb-root">MINI OS</span>
-                    <span class="breadcrumb-sep">/</span>
-                    <span id="breadcrumb-module">Materi</span>
+                <img src="assets/iconts/Logo.png" alt="Mini OS System Lab Logo" class="brand-logo">
+                <div class="brand-info">
+                    <span class="brand-title">MINI OS / SYSTEM LAB</span>
+                    <span class="brand-subtitle">EDISI AKADEMIK v1.0</span>
                 </div>
-
                 <div class="header-status-badge">
                     <span class="status-dot-active"></span>
-                    <span>Pembelajaran & Simulasi</span>
+                    <span>SIMULATOR SIAP</span>
                 </div>
-            </header>
+            </div>
 
-            <main class="content-wrapper">
-                <!-- ==========================================
-                     HALAMAN 1: MATERI (F01)
-                =========================================== -->
-                <section id="section-materi" class="main-section">
+            <nav class="header-nav">
+                <a href="#materi" class="nav-link active" data-page="materi" id="nav-materi">MODUL TEORI</a>
+                <a href="#cpu" class="nav-link" data-page="cpu" id="nav-cpu">PENJADWALAN CPU</a>
+                <a href="#memory" class="nav-link" data-page="memory" id="nav-memory">MANAJEMEN MEMORI</a>
+                <a href="#comparison" class="nav-link" data-page="comparison" id="nav-comparison">BENCHMARK KOMPARATIF</a>
+            </nav>
+
+            <div class="header-right">
+                <div class="header-clock" id="header-clock">
+                    <span class="material-symbols-outlined" style="font-size: 15px;">schedule</span>
+                    <span>10:42 AM</span>
+                </div>
+                <div class="header-user-badge">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer & Overlay -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <nav class="mobile-drawer" id="mobile-drawer">
+        <a href="#materi" class="mobile-nav-item active" data-page="materi">
+            <span class="material-symbols-outlined">auto_stories</span>
+            <span>Modul Teori</span>
+        </a>
+        <a href="#cpu" class="mobile-nav-item" data-page="cpu">
+            <span class="material-symbols-outlined">memory</span>
+            <span>Penjadwalan CPU</span>
+        </a>
+        <a href="#memory" class="mobile-nav-item" data-page="memory">
+            <span class="material-symbols-outlined">developer_board</span>
+            <span>Manajemen Memori</span>
+        </a>
+        <a href="#comparison" class="mobile-nav-item" data-page="comparison">
+            <span class="material-symbols-outlined">bar_chart</span>
+            <span>Benchmark Komparatif</span>
+        </a>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+
+    <main class="content-wrapper">
+        <!-- ==========================================
+            HALAMAN 1: MATERI (F01)
+        =========================================== -->
+        <section id="section-materi" class="main-section">
+            <div class="retro-window">
+                <!-- Retro Window Title Bar -->
+                <div class="window-titlebar titlebar-materi">
+                    <div class="window-controls">
+                        <span class="window-dot dot-red"></span>
+                        <span class="window-dot dot-yellow"></span>
+                        <span class="window-dot dot-green"></span>
+                    </div>
+                    <div class="titlebar-center">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">menu_book</span>
+                        <span class="window-title">PUSAT MATERI OS — KONSEP &amp; ALGORITMA</span>
+                    </div>
+                    <div class="titlebar-tag">
+                        <span class="titlebar-tag-badge">MODUL #01 AKTIF</span>
+                        <span class="material-symbols-outlined" style="font-size: 16px;">terminal</span>
+                    </div>
+                </div>
+
+                <!-- Window Body -->
+                <div class="window-body">
                     <!-- Hero Banner Retro Editorial -->
                     <div class="materi-hero">
                         <div class="hero-tagline">MATERI DASAR</div>
@@ -115,7 +118,7 @@
                     </div>
 
                     <!-- Materi 01: CPU Scheduling -->
-                    <div id="content-materi-cpu" class="materi-content-grid" style="margin-top: 24px;">
+                    <div id="content-materi-cpu" class="materi-content-grid" style="margin-top: 10px;">
                         <article class="materi-card">
                             <div class="materi-card-header">
                                 <h2 class="materi-section-title">Konsep Penjadwalan CPU (CPU Scheduling)</h2>
@@ -123,10 +126,10 @@
                             </div>
                             <p class="materi-body-text">
                                 CPU Scheduling adalah mekanisme sistem operasi untuk menentukan proses mana di antrean
-                                siap (*ready queue*) yang berhak menggunakan CPU saat CPU menganggur (*idle*). Tujuannya
-                                adalah memaksimalkan pemanfaatan CPU (*CPU Utilization*), meningkatkan *throughput*,
-                                serta meminimalkan waktu tunggu (*Waiting Time*) dan waktu penyelesaian (*Turnaround
-                                Time*).
+                                siap (<em>ready queue</em>) yang berhak menggunakan CPU saat CPU menganggur (<em>idle</em>). Tujuannya
+                                adalah memaksimalkan pemanfaatan CPU (<em>CPU Utilization</em>), meningkatkan <em>throughput</em>,
+                                serta meminimalkan waktu tunggu (<em>Waiting Time</em>) dan waktu penyelesaian (<em>Turnaround
+                                Time</em>).
                             </p>
 
                             <!-- Diagram Antrean Proses -->
@@ -228,19 +231,19 @@
                     </div>
 
                     <!-- Materi 02: Page Replacement -->
-                    <div id="content-materi-memory" class="materi-content-grid hidden" style="margin-top: 24px;">
+                    <div id="content-materi-memory" class="materi-content-grid hidden" style="margin-top: 10px;">
                         <article class="materi-card">
                             <div class="materi-card-header">
                                 <h2 class="materi-section-title">Konsep Pergantian Halaman (Page Replacement)</h2>
                                 <span class="materi-badge-label">TOPIK 02.1</span>
                             </div>
                             <p class="materi-body-text">
-                                Dalam sistem memori virtual (*virtual memory*), memori fisik dibagi menjadi blok-blok
+                                DDalam sistem memori virtual (<em>virtual memory</em>), memori fisik dibagi menjadi blok-blok
                                 berukuran tetap yang disebut <strong>Frame</strong>, sedangkan program dibagi menjadi
                                 <strong>Page</strong>. Ketika proses meminta halaman yang belum berada di frame fisik
                                 RAM, terjadi peristiwa yang disebut <strong>Page Fault</strong>. Jika seluruh frame
                                 sudah penuh, sistem operasi harus memilih satu halaman di memori untuk dikeluarkan
-                                (*victim page*) dan diganti dengan halaman baru.
+                                (<em>victim page</em>) dan diganti dengan halaman baru.
                             </p>
 
                             <!-- Diagram Alur Memori -->
@@ -285,7 +288,7 @@
                                         <span class="metric-formula">Least Recently Used</span>
                                     </div>
                                     <p>Mengganti halaman yang sudah paling lama tidak digunakan/diakses ke belakang
-                                        waktu (*backward looking*).</p>
+                                        waktu (<em>backward looking</em>).</p>
                                 </div>
                                 <div class="metric-def-card">
                                     <div class="metric-def-header">
@@ -293,7 +296,7 @@
                                         <span class="metric-formula">OPT / MIN</span>
                                     </div>
                                     <p>Mengganti halaman yang pemakaian berikutnya paling jauh di masa depan atau tidak
-                                        pernah digunakan lagi (*forward looking*). Menjadi standar batas teoretis
+                                        pernah digunakan lagi (<em>forward looking</em>). Menjadi standar batas teoretis
                                         terbaik.</p>
                                 </div>
                             </div>
@@ -342,12 +345,43 @@
                             </div>
                         </article>
                     </div>
-                </section>
+                </div>
 
-                <!-- ==========================================
-                     HALAMAN 2: CPU SCHEDULING (F03–F06, F10, F12, F13)
-                =========================================== -->
-                <section id="section-cpu" class="main-section hidden">
+                <!-- Window Status Footer -->
+                <div class="window-status-footer">
+                    <div class="status-item">
+                        <span class="status-dot-active"></span>
+                        <span>MODUL TEORI SIAP DIPELAJARI</span>
+                    </div>
+                    <div>EDISI AKADEMIK v1.0</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+            HALAMAN 2: CPU SCHEDULING (F03–F06, F10, F12, F13)
+        =========================================== -->
+        <section id="section-cpu" class="main-section hidden">
+            <div class="retro-window">
+                <!-- Retro Window Title Bar -->
+                <div class="window-titlebar titlebar-cpu">
+                    <div class="window-controls">
+                        <span class="window-dot dot-red"></span>
+                        <span class="window-dot dot-yellow"></span>
+                        <span class="window-dot dot-green"></span>
+                    </div>
+                    <div class="titlebar-center">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">memory</span>
+                        <span class="window-title">SIMULASI CPU — PENJADWALAN PROSES</span>
+                    </div>
+                    <div class="titlebar-tag">
+                        <span class="titlebar-tag-badge">SYS_LAB_v1.0</span>
+                        <span class="material-symbols-outlined" style="font-size: 16px;">tune</span>
+                    </div>
+                </div>
+
+                <!-- Window Body -->
+                <div class="window-body">
                     <div class="page-intro">
                         <h1>CPU Scheduling Simulator</h1>
                         <p>Kelola data proses, pilih algoritma penjadwalan, dan jalankan simulasi dengan visualisasi
@@ -366,11 +400,11 @@
                             </div>
                             <div style="display: flex; gap: 8px;">
                                 <button type="button" class="btn btn-secondary" id="btn-cpu-preset"
-                                    style="height: 34px; font-size: 13px;">
+                                    style="height: 34px; font-size: 12px;">
                                     Gunakan Contoh Data
                                 </button>
                                 <button type="button" class="btn btn-secondary" id="btn-cpu-clear"
-                                    style="height: 34px; font-size: 13px;">
+                                    style="height: 34px; font-size: 12px;">
                                     Kosongkan
                                 </button>
                             </div>
@@ -400,7 +434,7 @@
                                 <label class="form-label" style="visibility: hidden; user-select: none;"
                                     aria-hidden="true">Aksi</label>
                                 <button type="submit" class="btn btn-primary" id="btn-submit-process"
-                                    style="width: 100%; height: 42px;">
+                                    style="width: 100%; height: 40px;">
                                     Tambah Proses
                                 </button>
                                 <span class="input-hint" style="visibility: hidden; user-select: none;"
@@ -409,7 +443,7 @@
                         </form>
 
                         <!-- Tabel Daftar Proses -->
-                        <div class="table-responsive" style="margin-top: 18px;">
+                        <div class="table-responsive" style="margin-top: 16px;">
                             <table class="data-table" id="table-processes">
                                 <thead>
                                     <tr>
@@ -451,7 +485,7 @@
                                 <label class="form-label" style="visibility: hidden; user-select: none;"
                                     aria-hidden="true">Aksi</label>
                                 <button type="button" class="btn btn-primary" id="btn-run-cpu-instant"
-                                    style="width: 100%; height: 42px;">
+                                    style="width: 100%; height: 40px;">
                                     Jalankan Simulasi
                                 </button>
                                 <span class="input-hint" style="visibility: hidden; user-select: none;"
@@ -531,12 +565,43 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <!-- ==========================================
-                     HALAMAN 3: PAGE REPLACEMENT (F07–F10, F12, F13)
-                =========================================== -->
-                <section id="section-memory" class="main-section hidden">
+                <!-- Window Status Footer -->
+                <div class="window-status-footer">
+                    <div class="status-item">
+                        <span class="status-dot-active"></span>
+                        <span>SIMULATOR CPU READY</span>
+                    </div>
+                    <div>DETERMINISTIC KERNEL LAB</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+            HALAMAN 3: PAGE REPLACEMENT (F07–F10, F12, F13)
+        =========================================== -->
+        <section id="section-memory" class="main-section hidden">
+            <div class="retro-window">
+                <!-- Retro Window Title Bar -->
+                <div class="window-titlebar titlebar-memory">
+                    <div class="window-controls">
+                        <span class="window-dot dot-red"></span>
+                        <span class="window-dot dot-yellow"></span>
+                        <span class="window-dot dot-green"></span>
+                    </div>
+                    <div class="titlebar-center">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">developer_board</span>
+                        <span class="window-title">SIMULASI MEMORI — PAGE REPLACEMENT</span>
+                    </div>
+                    <div class="titlebar-tag">
+                        <span class="titlebar-tag-badge">MEM_BUS: 0x00F48A</span>
+                        <span class="material-symbols-outlined" style="font-size: 16px;">grid_view</span>
+                    </div>
+                </div>
+
+                <!-- Window Body -->
+                <div class="window-body">
                     <div class="page-intro">
                         <h1>Page Replacement Simulator</h1>
                         <p>Simulasikan pergantian halaman pada memori virtual dengan mengamati isi frame langkah demi
@@ -552,11 +617,11 @@
                             <h2 class="panel-title">Input Referensi Halaman & Frame</h2>
                             <div style="display: flex; gap: 8px;">
                                 <button type="button" class="btn btn-secondary" id="btn-memory-preset"
-                                    style="height: 34px; font-size: 13px;">
+                                    style="height: 34px; font-size: 12px;">
                                     Contoh Standar
                                 </button>
                                 <button type="button" class="btn btn-secondary" id="btn-memory-clear"
-                                    style="height: 34px; font-size: 13px;">
+                                    style="height: 34px; font-size: 12px;">
                                     Kosongkan
                                 </button>
                             </div>
@@ -647,12 +712,43 @@
                             <div id="memory-table-container"></div>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <!-- ==========================================
-                     HALAMAN 4: PERBANDINGAN ALGORITMA (F11)
-                =========================================== -->
-                <section id="section-comparison" class="main-section hidden">
+                <!-- Window Status Footer -->
+                <div class="window-status-footer">
+                    <div class="status-item">
+                        <span class="status-dot-active"></span>
+                        <span>VIRTUAL MEMORY MMU ACTIVE</span>
+                    </div>
+                    <div>PAGE REPLACEMENT ENGINE</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+            HALAMAN 4: PERBANDINGAN ALGORITMA (F11)
+        =========================================== -->
+        <section id="section-comparison" class="main-section hidden">
+            <div class="retro-window">
+                <!-- Retro Window Title Bar -->
+                <div class="window-titlebar titlebar-compare">
+                    <div class="window-controls">
+                        <span class="window-dot dot-red"></span>
+                        <span class="window-dot dot-yellow"></span>
+                        <span class="window-dot dot-green"></span>
+                    </div>
+                    <div class="titlebar-center">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">balance</span>
+                        <span class="window-title">PERBANDINGAN ALGORITMA — EVALUASI KINERJA OS</span>
+                    </div>
+                    <div class="titlebar-tag">
+                        <span class="titlebar-tag-badge">ENV: DETERMINISTIC_LAB</span>
+                        <span class="material-symbols-outlined" style="font-size: 16px;">analytics</span>
+                    </div>
+                </div>
+
+                <!-- Window Body -->
+                <div class="window-body">
                     <div class="page-intro">
                         <h1>Perbandingan Algoritma</h1>
                         <p>Evaluasi metrik seluruh algoritma menggunakan kumpulan data input yang sama secara objektif
@@ -733,26 +829,26 @@
                             </div>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                                 <button type="button" class="btn btn-secondary" id="btn-comp-mem-preset"
-                                    style="height: 36px; font-size: 13px;">
+                                    style="height: 36px; font-size: 12px;">
                                     Contoh Standar
                                 </button>
                                 <button type="button" class="btn btn-secondary" id="btn-comp-sync-mem"
-                                    style="height: 36px; font-size: 13px;">
+                                    style="height: 36px; font-size: 12px;">
                                     Ambil dari Simulator
                                 </button>
                             </div>
                         </div>
 
                         <!-- Card Input Perbandingan Memori -->
-                        <div class="comp-input-card"
-                            style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 18px; margin-bottom: 22px;">
+                        <div class="comp-input-card">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                                <div style="font-weight: 600; font-size: 13px; color: var(--color-text);">
+                                <div
+                                    style="font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--color-text);">
                                     DATA REFERENSI & KAPASITAS FRAME:
                                 </div>
                                 <button type="button" class="btn-table-action" id="link-goto-mem"
-                                    style="font-size: 13px; color: var(--color-primary); text-decoration: underline; background: none; border: none; cursor: pointer;">
+                                    style="font-size: 12px; color: var(--color-primary); text-decoration: underline; background: none; border: none; cursor: pointer;">
                                     Buka Simulator Page Replacement →
                                 </button>
                             </div>
@@ -774,7 +870,7 @@
                                     <label class="form-label" style="visibility: hidden; user-select: none;"
                                         aria-hidden="true">Aksi</label>
                                     <button type="button" class="btn btn-primary" id="btn-run-mem-comparison"
-                                        style="height: 42px; white-space: nowrap; padding: 0 18px;">
+                                        style="height: 40px; white-space: nowrap; padding: 0 18px;">
                                         Jalankan Perbandingan Memori
                                     </button>
                                     <span class="input-hint" style="visibility: hidden; user-select: none;"
@@ -786,10 +882,63 @@
                         <!-- Container Hasil Tabel Komparasi Memori -->
                         <div id="container-comparison-memory-table"></div>
                     </div>
-                </section>
-            </main>
+                </div>
+
+                <!-- Window Status Footer -->
+                <div class="window-status-footer">
+                    <div class="status-item">
+                        <span class="status-dot-active"></span>
+                        <span>MODUL SELESAI DIEVALUASI</span>
+                    </div>
+                    <div>DATASET: DETERMINISTIC_BATCH_v1</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Dock Floating Navigation Bar-->
+    <footer class="app-dock">
+        <div class="dock-inner">
+            <nav class="dock-nav">
+                <a href="#materi" class="dock-item active" data-page="materi">
+                    <div class="dock-icon dock-icon-materi">
+                        <span class="material-symbols-outlined">auto_stories</span>
+                    </div>
+                    <div class="dock-label">
+                        <span class="dock-title">Materi</span>
+                        <span class="dock-subtitle">Konsep OS</span>
+                    </div>
+                </a>
+                <a href="#cpu" class="dock-item" data-page="cpu">
+                    <div class="dock-icon dock-icon-cpu">
+                        <span class="material-symbols-outlined">memory</span>
+                    </div>
+                    <div class="dock-label">
+                        <span class="dock-title">CPU</span>
+                        <span class="dock-subtitle">Penjadwalan</span>
+                    </div>
+                </a>
+                <a href="#memory" class="dock-item" data-page="memory">
+                    <div class="dock-icon dock-icon-memory">
+                        <span class="material-symbols-outlined">developer_board</span>
+                    </div>
+                    <div class="dock-label">
+                        <span class="dock-title">Memori</span>
+                        <span class="dock-subtitle">Page Replace</span>
+                    </div>
+                </a>
+                <a href="#comparison" class="dock-item" data-page="comparison">
+                    <div class="dock-icon dock-icon-compare">
+                        <span class="material-symbols-outlined">bar_chart</span>
+                    </div>
+                    <div class="dock-label">
+                        <span class="dock-title">Bandingkan</span>
+                        <span class="dock-subtitle">Komparasi</span>
+                    </div>
+                </a>
+            </nav>
         </div>
-    </div>
+    </footer>
 
     <!-- Script Algoritma & Controller -->
     <script src="js/algoritma/fcfs.js"></script>
