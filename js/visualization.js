@@ -183,10 +183,13 @@ function renderMemoryTable(container, steps, frameCount, currentStepIndex = -1) 
             td.textContent = (pageVal !== null && pageVal !== undefined) ? pageVal : '—';
 
             // Jika langkah ini adalah frame yang baru dimasukkan / diganti
-            if (st.status === 'FAULT' && st.targetFrameIndex === f) {
-                td.classList.add('slot-updated');
-            } else if (st.status === 'HIT' && st.targetFrameIndex === f) {
-                td.classList.add('slot-hit');
+            const isHit = st.status && st.status.toUpperCase() === "HIT";
+            const isFault = st.status && st.status.toUpperCase() === "FAULT";
+
+            if (isFault && st.targetFrameIndex === f) {
+              td.classList.add("slot-updated");
+            } else if (isHit && st.targetFrameIndex === f) {
+              td.classList.add("slot-hit");
             }
 
             if (currentStepIndex === idx + 1) {
@@ -208,13 +211,14 @@ function renderMemoryTable(container, steps, frameCount, currentStepIndex = -1) 
     statusRow.appendChild(statusLabelTd);
 
     steps.forEach((st, idx) => {
-        const td = document.createElement('td');
-        td.className = `status-cell ${st.status === 'HIT' ? 'status-hit' : 'status-fault'}`;
-        td.textContent = st.status; // Ditulis jelas sebagai teks "HIT" atau "FAULT"
-        if (currentStepIndex === idx + 1) {
-            td.classList.add('active-column');
-        }
-        statusRow.appendChild(td);
+      const td = document.createElement("td");
+      const isHit = st.status && st.status.toUpperCase() === "HIT";
+      td.className = `status-cell ${isHit ? "status-hit" : "status-fault"}`;
+      td.textContent = isHit ? "HIT" : "FAULT"; // Ditulis jelas sebagai teks "HIT" atau "FAULT"
+      if (currentStepIndex === idx + 1) {
+        td.classList.add("active-column");
+      }
+      statusRow.appendChild(td);
     });
     tbody.appendChild(statusRow);
 

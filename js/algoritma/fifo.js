@@ -34,10 +34,10 @@ function runFIFO(referenceString, frameCount) {
                 step: stepNUM,
                 page: page,
                 frames: [...frames],
-                status: 'Hit',
+                status: 'HIT',
                 replacedPage: null,
                 targetFrameIndex: existingIndex,
-                description: 'Halaman ${page} sudah berada di frame ${existingIndex + 1}. Terjadi Page Hit (tidak ada halaman yang diganti).'
+                description: `Halaman ${page} sudah berada di frame ${existingIndex + 1}. Terjadi Page Hit (tidak ada halaman yang diganti).`
          });
         } else {
             pageFaults++;

@@ -304,7 +304,8 @@ function updateMemoryStepView(stepIndex) {
     renderMemoryTable(tableContainer, memorySimulationResult.steps, currentFrameCount, stepIndex);
 
     if (expl && currentStepData) {
-        const statusBadge = currentStepData.status === 'HIT'
+        const isHit = (currentStepData.status && currentStepData.status.toUpperCase() === 'HIT');
+        const statusBadge = isHit
             ? `<span class="badge-success">PAGE HIT</span>`
             : `<span class="badge-warning">PAGE FAULT</span>`;
         expl.innerHTML = `
@@ -315,8 +316,8 @@ function updateMemoryStepView(stepIndex) {
 
     // Hitung metrik sementara hingga langkah ini
     const stepsSoFar = memorySimulationResult.steps.slice(0, stepIndex);
-    const faultsSoFar = stepsSoFar.filter(s => s.status === 'FAULT').length;
-    const hitsSoFar = stepsSoFar.filter(s => s.status === 'HIT').length;
+    const faultsSoFar = stepsSoFar.filter(s => s.status && s.status.toUpperCase() === 'FAULT').length;
+    const hitsSoFar = stepsSoFar.filter(s => s.status && s.status.toUpperCase() === 'HIT').length;
     const hitRatio = Number(((hitsSoFar / stepIndex) * 100).toFixed(2));
     const faultRatio = Number(((faultsSoFar / stepIndex) * 100).toFixed(2));
 
