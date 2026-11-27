@@ -78,9 +78,9 @@ Gunakan **Top Header** di bagian atas atau **Floating Dock** di bagian bawah lay
 
 | No | Nama Lengkap | NIM | Peran / Tanggung Jawab |
 |:--:|:---|:---:|:---|
-| 1 | [Nama Anggota 1] | [NIM 1] | [Peran / Tugas Anggota 1] |
-| 2 | [Nama Anggota 2] | [NIM 2] | [Peran / Tugas Anggota 2] |
-| 3 | [Nama Anggota 3] | [NIM 3] | [Peran / Tugas Anggota 3] |
-| 4 | [Nama Anggota 4] | [NIM 4] | [Peran / Tugas Anggota 4] |
-| 5 | [Nama Anggota 5] | [NIM 5] | [Peran / Tugas Anggota 5] |
-| 6 | [Nama Anggota 6] | [NIM 6] | [Peran / Tugas Anggota 6] |
+| 1 | Okan Ramandhan | 257006111008 | [Peran / Tugas Anggota 1] |
+| 2 | Diva Putra Utama | 257006111012 | [Peran / Tugas Anggota 2] |
+| 3 | Muhammad Ihsan Farhan Maulana | 257006111015 | [Peran / Tugas Anggota 3] |
+| 4 | Salma Fauziah | 257006111020 | [Peran / Tugas Anggota 4] |
+| 5 | Silfa Fauzani Budiman | 257006111036 | [Peran / Tugas Anggota 5] |
+| 6 | Muhammad Nasikha Rahman | 257006111058 | [Peran / Tugas Anggota 6] |
